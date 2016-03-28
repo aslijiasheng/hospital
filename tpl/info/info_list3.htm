@@ -1,0 +1,106 @@
+<form id="pagerForm" method="post" action="index.php?action=info">
+	<input type="hidden" name="pageNum" value="1" />
+    <input type="hidden" name="numPerPage" value="20" />
+</form>
+
+<div class="page">
+	<div class="pageHeader">
+		<form onsubmit="return navTabSearch(this);" action="index.php?action=info" method="post">
+		<div class="searchBar">
+			<table class="searchContent">
+				<tr>
+					<td>
+						客户名称:<input type="text" name="name" size="12"/>
+					</td>
+					<td>
+						客户电话:<input type="text" name="tel" size="12"/>
+					</td>
+
+					<td>
+					<!--{$typeid_cn}-->
+					</td>
+					 <td>
+					<!--{$levelid_cn}-->
+					</td>
+					<td>
+						登记时间:<input type="text" name="time_start" size="9" class="date" readonly="true" />
+						-<input type="text" name="time_over" size="9" class="date" readonly="true" />
+					</td>
+					 <td>
+					<select name="visitnum" id="visitnum">
+                    <option >是否到院</option>
+					<option value="1">已到院</option>
+					<option value="0">全部</option>
+                    </select>
+					</td>
+					<td>
+					<div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div>
+					</td>
+				</tr>
+			</table>
+		</div>
+		</form>
+		
+	</div>
+	<div class="pageContent">
+		<div class="panelBar">
+			<ul class="toolBar">				
+				<li><a class="show" href="?action=info&do=show&id={id}" target="dialog"><span>明细</span></a></li>
+				<li class="line">line</li>
+				<li><a class="add" href="?action=info&do=new" target="dialog"><span>添加</span></a></li>
+				<li><a class="edit" href="?action=info&do=edit&id={id}" target="dialog"><span>修改</span></a></li>
+				<li><a class="delete" href="?action=info&do=del&id={id}" target="navTabTodo" title="确定要删除吗?"><span>删除</span></a></li>
+				<li class="line">line</li>
+				<li><a class="add" href="?action=info&do=visit&id={id}" target="dialog"><span>拜访</span></a></li>
+			</ul>
+		</div>
+		<table class="list" layouth="91" style="width:1320px;">
+			<thead>
+				<tr>
+					<th align="center">ID</th>
+					<th align="center">登记时间</th>
+					<th align="center">客户名称</th>
+					<th align="center">登记人</th>
+					<th align="center">拜访次数</th>
+					<th align="center">区域</th>
+					<th align="center">客户级别</th>
+					<th align="center">预约方式</th>
+					<th align="center">预约科室</th>
+					<th align="center">整形项目</th>
+					<th align="center">客户电话</th>
+					<th align="center">客户邮箱</th>
+					<th align="center">QQ号</th>
+					<th align="center">客户地址</th>
+				</tr>
+			</thead>
+			<tbody>			
+			<!--{foreach from=$list item=row}-->
+				<tr target="id" rel="<!--{$row.id}-->" >
+					<td><!--{$row.id}--></td>
+					<td><!--{$row.created_at}--></td>
+					<td><!--{$row.name}--></td>
+					<td><!--{$row.salesid_txt}--></td>
+					<td><!--{$row.visitnum}--></td>
+					<td><!--{$row.areaid_txt}--></td>
+					<td><!--{$row.levelid_txt}--></td>
+					<td><!--{$row.typeid_txt}--></td>
+					<td><!--{$row.productid_txt}--></td>
+					<td><!--{$row.zxxm}--></td>
+					<td><!--{$row.tel}--></td>
+					<td><!--{$row.mail}--></td>
+					<td><!--{$row.Hnumber}--></td>
+					<td><!--{$row.address}--></td>
+				</tr>			
+			<!--{/foreach}-->
+			</tbody>
+		</table>
+		<div class="panelBar">
+			<div class="pages">
+				<span>共{$total}条</span>
+			</div>
+			
+			<div class="pagination" targetType="navTab" totalCount="{$total}" numPerPage="20" pageNumShown="10" currentPage="{$pageNum}"></div>
+
+		</div>
+	</div>
+</div>

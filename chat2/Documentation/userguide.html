@@ -1,0 +1,59 @@
+<html>
+ <head>
+  <title>
+   ARSC Really Simple Chat - Documentation - User Guide
+  </title>
+ </head>
+ <body>
+  <h1>ARSC Really Simple Chat</h1>
+
+  <h2>Userguide</h2>
+
+  <hr>
+  
+  <h4>Copyright Notice</h4>
+  <small>
+   Copyright © 2001-2005 Manuel Kiessling
+   <p />
+   This manual is free software; you may redistribute it and/or modify it under
+   the terms of the GNU General Public License as published by the Free Software
+   Foundation; either version 2, or (at your option) any later version.
+   <p />
+   This is distributed in the hope that it will be useful, but <em>without any
+   warranty</em>; without even the implied warranty of merchantability or fitness
+   for a particular purpose.  See the GNU General Public License for more details.
+   <p />
+   A copy of the GNU General Public License is available at <code><a href="http://www.gnu.org/copyleft/gpl.html">the GNU website</a></code>.
+   You can also obtain it by writing to the Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+  </small>
+
+  <hr>
+
+  <h3>Introduction</h3>
+  ARSC Really Simple Chat is a webchat software written in PHP, and it uses MySQL as its data backend. ARSC allows the visitors of your website to chat with each other in realtime.
+  
+  <h3>Features</h3>
+  The main design principles during the development of ARSC where: interoperability, security, ease of use, and flexibility, in that order.<br />
+  ARSC is known to run with every webbrowser in existence, even textbased ones like Lynx or w3m, and is known to work great with screen readers for blind people.<br />
+  ARSC is able to run with the PHP option <i>register_globals</i> set to <i>Off</i>, and every single user input undergoes a sanity check, in order to avoid SQL injection. Strong hash values are used for session and password data, and mechanisms against session theft have been implemented.<br />
+  Installing ARSC is quick and easy, with no programming skills required, using a web based installer. No file permissions have to be changed, and only one file needs to be edited.<br />
+  The look and feel of every user-visible aspect of ARSC can easily be edited using a straightforward web based administration system, on a room by room or even user by user base.<br />
+  
+  <h3>Using ARSC as a chatter/visitor</h3>
+  When your visitors open the URL of your ARSC installation, they will be presented with a language selection dropdown. ARSC tries to automatically detect which language the user might want to use by asking the browser which language(s) it supports and prefers. This is something the user can change in his or her browser preferences. Both Microsoft Internet Explorer and Mozilla Firefox (and  probably many others) support this. However, the choice ARSC makes for the user can be overwritten by the user.<br />
+  Upon clicking the Next button, the login page is presented to the user. Here, the user enters his nickname, provides a password (if he wants to use a registered user account), chooses the chatroom he would like to enter, and can choose between different interfaces. He also sees a list of the users currently logged in to the chat, and in which rooms those users are. Furthermore, there is a link to the registration page. Depending on how you configured the option <i>register_force</i>, the user can log in without the need to register (this is the default), or he can only log in using a registered account.<br />
+  Once the user successfully logs in, he is presented a 4-parted chat interface (assuming you did not yet change the layout ARSC ships with). On the left side of the screen, ...to be continued...
+  
+  <h3>Administering ARSC</h3>
+  Using the web based administration interface, you can change many aspects of ARSCs behaviour, and basically every aspect of its look and feel.
+  First, you will probably want to have a look at the <i>Parameters</i> section. Every parameter has a detailed description of which values it accepts and what it does, thus this is not discussed here.
+
+  <h4>Users</h4>
+  The Users section allows you to create, delete and alter registered ARSC user accounts. Upon creation, the only value you have to supply is the username. You don't have to provide the password, but note that it does not make much sense to create a user without a password, because then everyone can log in using that account. Please note that the password field will always be entry, even if you view existing users or just created one with a password. This is because the passwords itself are not stored in the database, only their hashes, in order to protect your visitors privacy. If you want to change the password of an existing user, simply fill in the new password and click on Save changes. You can define which chat layout a user will see upon login, by changing the Layout field. Check out the Display user to get an idea how that works. Please note that users can not (yet) change their layout themselves. You can also define layouts on a per-room basis, but user layouts override room layouts (except for users that have the default layout defined).
+
+  <h4>Rooms</h4>
+  The Rooms section allows you to create, delete and alter ARSC chatrooms. There are three different roomtypes in ARSC: standard rooms, like the room <i>Lounge</i>, moderated rooms, like the room <i>VIP Lounge</i>, and private user rooms. Using this interface, you can only create the first two of them. Private user rooms can not be created here, but are created from within the chat using the <i>/croom</i> command. Private user rooms are always password protected, standard and moderated rooms are never password protected.
+  <p />
+  ...to be continued...
+ </body>
+</html>

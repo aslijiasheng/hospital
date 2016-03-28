@@ -1,0 +1,74 @@
+ARSC - ARSC Really Simple Chat - Installation instructions
+
+ARSC can be installed by following these four steps:
+
+- Create a MySQL database
+- Provide the hostname, username, password, and database
+  name to allow ARSC to connect to your MySQL Server
+- Copy the ARSC files onto the webserver
+- Open the install script url in the webbrowser
+
+Let's look at these steps in detail:
+
+First of all, you need a database on a MySQL server to which ARSC will
+connect to once it is installed.
+
+Create this database if you don't already have one that you want to
+use, and create a new or use an existing MySQL user account that ARSC
+can use to connect to the MySQL server.
+
+Let's assume the name of the database is 'arsc', the username is
+'arsc', and the password is 'somethingreallysecret' (please do not
+choose this as your password!), and the MySQL server runs on the same
+machine as your webserver, thus ARSC will connect to 'localhost'.
+
+Of course you can name your database however you want, same goes for
+the username and the password, and it is no problem if MySQL runs on
+another machine.
+
+Extract the zipped ARSC archive, and find the file 'config.inc.php'. It
+is located in the directory 'inc', which is a subdirectory of 'base'
+in the root directory of the extracted archive. Open this file in your
+favorite text editor, and edit these four parameters:
+
+define("ARSC_PARAMETER_DB_HOST", "localhost");
+define("ARSC_PARAMETER_DB_USER", "user");
+define("ARSC_PARAMETER_DB_PASSWORD", "password");
+define("ARSC_PARAMETER_DB_DATABASE", "database");
+
+Change them according to your installation. With our example values the
+result would be:
+
+define("ARSC_PARAMETER_DB_HOST", "localhost");
+define("ARSC_PARAMETER_DB_USER", "arsc");
+define("ARSC_PARAMETER_DB_PASSWORD", "somethingreallysecret");
+define("ARSC_PARAMETER_DB_DATABASE", "arsc");
+
+Now save your changes.
+
+Then open up a FTP or SCP program, and copy all files you extracted
+from the zipped archive onto your server.
+
+Now start your favourite browser, and point it at the 'install'
+directory. It is a subdirectory of 'base' in the root directory
+of the extracted archive.
+If for example your domain name is 'www.example.com', and you copied
+all your files into a directory named 'chat', you would have to open
+this url:
+
+http://www.example.com/chat/base/install/
+
+This script will do the necessary steps to finish the installation of
+ARSC. If an error occurs, it will point you at the right direction to
+get help. Please don't forget to write down the user accounts it will
+list, and make sure you delete the 'install' directory once the
+installation is finished, or other people can MESS UP YOUR INSTALLATION
+and CHANGE YOUR PASSWORDS!
+
+You can then visit your chat at this url (example domain only):
+
+http://www.example.com/chat/
+
+And you can open the admin interface at this url (example domain only):
+
+http://www.example.com/chat/base/admin/

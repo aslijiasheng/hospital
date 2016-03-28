@@ -1,0 +1,67 @@
+<div class="page">
+	<div class="pageHeader">
+		<form onsubmit="return navTabSearch(this);" action="?action=config&do=sys" method="post">
+		<div class="searchBar">
+			<table class="searchContent">
+				<tr>
+					<td>
+						配置名称:<input type="text" name="title" size="10"/>
+					</td>
+					<td>
+						<div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div>
+					</td>
+				</tr>
+			</table>
+		</div>
+		</form>
+	</div>
+	<div class="pageContent">
+			<div  style="float:left;  overflow:auto; width:170px; line-height:21px; background:#fff; ">
+			<div class="panelBar">
+			<ul class="toolBar">
+				<li></li>
+			</ul></div>
+			<ul class="tree treeFolder" layouth="75">
+				<li><a >配置分类</a>
+
+				</li>
+			</ul>
+			</div><!--左边结束-->
+
+			<div id="sysBox" class="unitBox" style="float:left; width:81%; border:solid 1px #b8d0d6;border-top:none;borter-bottom:none; line-height:21px; background:#fff;">
+				<!--内容-->
+				
+			<div class="panelBar">
+			<ul class="toolBar">
+				<li><a class="edit" href="?action=config&do=sysupdata&id={id}" target="dialog"><span>修改</span></a></li>
+			</ul>
+			</div>
+		<table class="list" layouth="90" style="width:90%;">
+			<thead>
+				<tr>
+					<th align="center">参数说明</th>
+					<th align="center">参数值</th>
+					<th align="center">变量名称</th>
+				</tr>
+			</thead>
+			<tbody>			
+			<!--{foreach from=$list item=row}-->
+				<tr target="id" rel="<!--{$row.id}-->" >
+					<td><!--{$row.title}--></td>
+					<td style="width:60%;"><!--{$row.value}--></td>
+					<td><!--{$row.varname}--></td>
+				</tr>			
+			<!--{/foreach}-->
+			</tbody>
+		</table>
+		
+		<div class="panelBar" >
+			<div class="pages" >
+				<span>共{$total}条:鼠标点击便可修改</span>
+			</div>
+			
+			<div class="pagination" targetType="navTab" totalCount="{$total}" numPerPage="20" pageNumShown="10" currentPage="{$pageNum}"></div>
+<!--neirong-->
+		</div><!--右边结束-->	
+	 </div><!--pageContent-->
+</div>

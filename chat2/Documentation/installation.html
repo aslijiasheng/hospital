@@ -1,0 +1,83 @@
+<html>
+ <head>
+  <title>
+   ARSC Really Simple Chat - Documentation - Installation Instructions
+  </title>
+ </head>
+ <body>
+  <h1>ARSC Really Simple Chat</h1>
+
+  <h2>Installation Instructions</h2>
+
+  <hr>
+  
+  <h4>Copyright Notice</h4>
+  <small>
+   Copyright © 2001-2005 Manuel Kiessling
+   <p />
+   This manual is free software; you may redistribute it and/or modify it under
+   the terms of the GNU General Public License as published by the Free Software
+   Foundation; either version 2, or (at your option) any later version.
+   <p />
+   This is distributed in the hope that it will be useful, but <em>without any
+   warranty</em>; without even the implied warranty of merchantability or fitness
+   for a particular purpose.  See the GNU General Public License for more details.
+   <p />
+   A copy of the GNU General Public License is available at <code><a href="http://www.gnu.org/copyleft/gpl.html">the GNU website</a></code>.
+   You can also obtain it by writing to the Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+  </small>
+
+  <hr>
+  
+  <h3>Installation</h3>
+  ARSC can be installed by following these four steps:
+  <p />
+  	1) Create a MySQL database (or use an existing one)<br />
+  	2) Provide the hostname, username, password, and database name to allow ARSC to connect to your MySQL Server<br />
+  	3) Copy the ARSC files onto the webserver<br />
+  	4) Open the install script url in the webbrowser
+
+  <h4>Create a MySQL database</h4>
+  First of all, you need a database on a MySQL server to which ARSC will connect to once it is installed.
+  <p />
+  Create this database if you don't already have one that you want to use, and create a new or use an existing MySQL user account that ARSC can use to connect to the MySQL server.
+  <p />
+  For the following example, let's assume the name of the database is <i>arsc</i>, the username is <i>arsc</i>, and the password is <i>somethingreallysecret</i> (please do **not** choose this as your password!), and the MySQL server runs on the same machine as your webserver, thus ARSC will connect to localhost.<br />
+  Of course you can name your database however you want, same goes for the username and the password, and it is no problem if MySQL runs on a remote machine.
+
+  <h4>Provide MySQL credentials</h4>
+  Extract the zipped ARSC archive, and find the file config.inc.php. It is located in the directory inc, which is a subdirectory of base in the root directory of the extracted archive. Open this file in your favorite text editor, and edit these four lines:
+  <p />
+  <code>define("ARSC_PARAMETER_DB_HOST", "localhost");<br />
+  define("ARSC_PARAMETER_DB_USER", "user");<br />
+  define("ARSC_PARAMETER_DB_PASSWORD", "password");<br />
+  define("ARSC_PARAMETER_DB_DATABASE", "database");</code>
+  <p />
+  Change them according to your installation. With our example values the result would be:
+  <p />
+  <code>define("ARSC_PARAMETER_DB_HOST", "localhost");<br />
+  define("ARSC_PARAMETER_DB_USER", "arsc");<br />
+  define("ARSC_PARAMETER_DB_PASSWORD", "somethingreallysecret");<br />
+  define("ARSC_PARAMETER_DB_DATABASE", "arsc");</code>
+  <p />
+  Now save your changes.
+
+  <h4>Copy the files onto the server</h4>
+  Open up a FTP or SCP program, and copy all files you extracted from the zipped archive onto your webserver, into a directory which can be reached on the WWW.
+
+  <h4>Run the install script</h4>
+  Now start your favourite browser, and point it at the install directory. It is a subdirectory of base in the root directory of the extracted archive. If for example your domain name is www.example.com, and you copied all your files into a directory named chat, you would have to open this url:<br />
+  http://www.example.com/chat/base/install/
+  <p />
+  This script will do the necessary steps to finish the installation of ARSC. If an error occurs, it will point you at the right direction to get help. Please don't forget to write down the user accounts it will list, and make sure you delete the install directory once the installation is finished, or other people might be able to mess up your installation and change your passwords!
+  <p />
+  You can then visit your chat at this url (example domain only):<br />
+  http://www.example.com/chat/
+  <p />
+  And you can open the admin interface at this url (example domain only):<br />
+  http://www.example.com/chat/base/admin/
+  <p />
+  In order to be able to use the administration interface, you have to provide the credentials for the user Administrator, which were created upon installation.
+
+ </body>
+</html>

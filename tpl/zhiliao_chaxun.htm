@@ -1,0 +1,37 @@
+
+<div class="page">
+	<div class="pageContent">
+			<div class="pageFormContent" layoutH="56">
+				<p>
+					<label>客户名称：</label>
+					<!--{$row.name}-->
+				</p>
+				<p>
+					<label>到诊情况：</label>
+					<!--{$row.fz|default:不详}-->
+				</p>
+				<p>
+					<label>治疗科室：</label>
+					<!--{$row.sellproduct_txt}-->
+				</p>
+				<p>
+					<label>销售金额：</label>
+					<!--{$row.sellvol_txt}-->
+				</p>
+				<p>
+					<label>拜访时间：</label>
+					<!--{$row.created_at}-->
+				</p>				
+				<p>
+					<label>备注：</label>
+					<!--{$row.intro|default:无}-->
+				</p>
+				<p>
+					<label>图片：</label>
+					<div class="tp">
+					<!--{$row.tp}--></div>
+				</p>
+				
+			</div>
+	</div>
+</div>

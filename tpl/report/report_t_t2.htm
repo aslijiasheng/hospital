@@ -1,0 +1,122 @@
+  <script src="../chart/js/highcharts.js"></script>
+<script src="../chart/js/modules/exporting.js"></script>
+<!--{$row.sj2}-->
+		<script type="text/javascript">
+		function toDecimal(x) {  
+            var f = parseFloat(x);  
+            if (isNaN(f)) {  
+                return;  
+            }  
+            f = Math.round(x*100)/100;  
+            return f;  
+        }//小数点控制
+$(function () {
+    var chart;
+    $(document).ready(function() {
+        chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'cszt'
+            },
+            title: {
+                text: '<!--{$row.bt}-->'
+            },
+            xAxis: {
+                categories: <!--{$row.bt2}-->
+            },
+            tooltip: {
+                formatter: function() {
+                    var s;
+                    if (this.point.name) { // the pie chart
+                        s = ''+
+                            this.point.name +': ￥'+ this.y +' RMB';
+                    } else {
+                        s = ''+
+                            this.x  +': '+ this.y;
+                    }
+                    return s;
+                }
+            },
+            labels: {
+                items: [{
+                    html: '渠道金额统计',
+                    style: {
+                        left: '550px',
+                        top: '200px',
+                        color: 'black'
+                    }
+                }]
+            },
+            series: [{
+                type: 'column',
+                name: '登记数量',
+                data: <!--{$row.sja1}-->
+            }, {
+                type: 'column',
+                name: '到院',
+                data: <!--{$row.sja2}-->
+            }, {
+                type: 'column',
+                name: '派单',
+                data: <!--{$row.sja3}-->
+            }, {
+                type: 'spline',
+                name: '初诊人数',
+                data: <!--{$row.sja4}-->,
+                marker: {
+                	lineWidth: 2,
+                	lineColor: Highcharts.getOptions().colors[3],
+                	fillColor: 'white'
+                }
+            },{
+                type: 'spline',
+                name: '复诊人数',
+                data: <!--{$row.sja5}-->,
+                marker: {
+                	lineWidth: 2,
+                	lineColor: Highcharts.getOptions().colors[3],
+                	fillColor: 'white'
+                }
+            }, {
+                type: 'pie',
+                name: 'Total consumption',
+                data: <!--{$row.data}-->,
+                center: [600, 100],
+                size: 130
+            }]
+        });
+    });
+    
+});
+		</script>
+
+<div class="page">
+	<div class="pageHeader">
+		<form onsubmit="return navTabSearch(this);" action="index.php?action=report&do=t2t" method="post">
+		<div class="searchBar">
+			<table class="searchContent">
+				<tr>
+					<td>
+						选择时间范围:<input type="text" name="time_start" size="10" class="date" value="<!--{$postdate_start}-->" readonly="true" />
+						-<input type="text" name="time_over" size="10" class="date" value="<!--{$postdate_over}-->" readonly="true" />
+					</td>
+					<td>
+					<!--{$salesid_cn}-->
+					</td>
+					<td>
+					<div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div>
+					</td>
+				</tr>
+			</table>
+		</div>
+		</form>
+	</div>
+	<div class="pageContent">
+		<div class="panelBar">
+			<ul class="toolBar">
+			<li><a class="show" href="?action=report&do=t2t" target="navTab" rel="t2t"><span>统计图</span></a></li>	
+			</ul>
+		</div>
+<div id="cszt" style="min-width: 400px; height: 400px; margin: 0 auto;"></div>
+	</div>
+</div>
+

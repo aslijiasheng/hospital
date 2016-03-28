@@ -1,0 +1,1 @@
+今日有<font style="color:#f00;" >(<?php echo $this->_var['row']['jryy']; ?>)</font>个客人可能到院；<a href="index.php?action=info&yyat=2013-01-25" target="navTab" rel="cue"> 》》查看</a>

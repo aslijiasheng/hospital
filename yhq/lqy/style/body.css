@@ -1,0 +1,21 @@
+*,body,div,ul,li,span,p,h1,h2,h3,h4,h5,h6{list-style:none; margin:0px; padding:0px; border:none;}
+body{background:#fff;}
+h1,h2,h3,h4,h5,h6{font-size:12px;}
+i{font-style:normal; font-weight:bold; font-family:"黑体"; letter-spacing:1.5px; font-size:24px;}
+.T_body{width:640px; overflow:hidden; }
+.T_body ul{width:680px;}
+.T_body ul li{width:310px;  float:left; margin-right:20px; border-bottom:3px dashed #dedede; margin-bottom:15px;}
+.T_body ul li .T_d{ width:304px;background:url(images/tm.gif) repeat;border:3px solid #B7E1EF;overflow:hidden;}
+.T_body ul li a:link{background:#eaf9ff;}
+.T_body ul li .T_d:hover{background:#fbf2ef; border:3px solid #f8ded5;}
+.T_l{color:#f00; float:left; width:152px; display:table; padding-top:25px; text-align:center; background:url(../images/coupon_bg.png) no-repeat #fff 147px -140px;}
+.T_l h1{font-weight:100; lien-height:39px;}
+.T_l h1 img{margin-top:6px;}
+
+.T_r{float:left; width:150px;}
+.T_r h2{width:150px; text-align:center; font-family:"微软雅黑"; font-size:18px; font-weight:100; letter-spacing:2px; margin-top:24px; color:#f00;}
+.t_r h2 a,.t_r h2 a:link,.t_r h2 a:visited,.t_r h2 a:hover{color:#f00;}
+.T_r a.bb{width:90px; height:30px; display:block; margin:0 auto; background:url(../images/coupon_bg.png) -5px -75px; margin-top:12px;}
+.T_r a.bb:hover{background:url(../images/coupon_bg.png) -5px -105px;}
+
+.T_body ul li p{float:left;height:30px;line-height:30px;overflow:hidden;}

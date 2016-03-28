@@ -1,0 +1,38 @@
+<form id="pagerForm" method="post" action="index.php?action=config">
+	<input type="hidden" name="pageNum" value="1" />
+    <input type="hidden" name="numPerPage" value="20" />
+</form>
+
+<div style="border-left:1px #B8D0D6 solid;">
+		<table class="list" layouth="97" style="width:800px">
+			<thead>
+				<tr>
+					<th align="center">ID</th>
+					<th align="center">名称</th>
+					<th align="center">创建时间</th>
+					<th align="center">更新时间</th>
+					<th align="center">状态</th>
+				</tr>
+			</thead>
+			<tbody>			
+			<!--{foreach from=$list item=row}-->
+				<tr target="id" rel="<!--{$row.id}-->" >
+					<td><!--{$row.id}--></td>
+					<td><!--{$row.title}--></td>
+					<td><!--{$row.created_at}--></td>
+					<td><!--{$row.updated_at}--></td>
+					<td><!--{$row.xs_cn}--></td>
+				</tr>			
+			<!--{/foreach}-->
+			</tbody>
+		</table>
+		
+		<div class="panelBar">
+			<div class="pages">
+				<span>共{$total}条</span>
+			</div>
+			
+			<div class="pagination" targetType="navTab" totalCount="{$total}" numPerPage="20" pageNumShown="10" currentPage="{$pageNum}"></div>
+
+		</div>
+	</div>

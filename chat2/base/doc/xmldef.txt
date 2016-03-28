@@ -1,0 +1,70 @@
+
+A typical session with an external client:
+------------------------------------------
+
+1) A client logs a user into the system:
+   (minimum length 200 bytes, fill with dummy bytes if necessary)
+
+<arscrequest><type>connect</type><user>Manuel</user><password>prodigy</password><room>lounge</room><language>english</language><template>xml</template></arscrequest>dummydummydummydummydummydummydummydummydummydummydummydummy
+
+
+
+
+2) Afterwards, the server will return this answer
+   a) on success:
+
+<arscrespond><type>connect</type><status>ok</status><sid>123n</sid><version>0.1</version></arscrespond>
+
+   b) on failure (double user, wrong password, ip is banned etc. pp.):
+
+<arscrespond><type>connect</type><status>error</status><error>Your IP is banned!</error><version>0.1</version></arscrespond>
+
+
+
+
+3) If the connection could be established, the server starts to send the output
+
+<arscmessage><type>me</type><sendtime>{sendtime}</sendtime><sender>{user}</sender><content>{message}</content></arscmessage>
+<arscmessage><type>whisper</type><sendtime>{sendtime}</sendtime><sender>{user}</sender><content>{message}</content></arscmessage>
+<arscmessage><type>whisperops</type><sendtime>{sendtime}</sendtime><sender>{user}</sender><content>{message}</content></arscmessage>
+<arscmessage><type>normal</type><sendtime>{sendtime}</sendtime><sender>{user}</sender><content>{message}</content></arscmessage>
+<arscmessage><type>system</type><sendtime>{sendtime}</sendtime><sender>{user}</sender><content>{message}</content></arscmessage>
+
+
+
+
+4) The client can post a message to the current room by sending:
+
+<arscrequest><type>post</type><sid>123n</sid><content>hello world</content></arscrequest>
+
+
+
+
+5) After receiving the posting, the server will return this answer
+   a) on success:
+
+<arscrespond><type>post</type><status>ok</status></arscrespond>
+
+   b) on failure (sid not known to the system etc.)
+
+<arscrespond><type>post</type><status>ok</status>
+
+
+
+
+6) If the client needs a list of users in the current room, he sends
+
+<arscrequest><type>userlist</type><sid>123n</sid></arscrequest>
+
+
+
+
+7) After receiving the userlist request, the server answers
+   a) on success:
+
+<arscrespond><type>userlist</type><status>ok</status><user><name>HanSolo</name><level>0</level></user><user><name>BobbaFett</name><level>1</level></user></arscrespond>
+
+   b) on failure (sid not known to the system etc.)
+
+<arscrespond><type>userlist</type><status>error</status><error>This session is not known</error></arscrespond>
+

@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="style/body.css" rel="stylesheet">
+
+<link href="doc/common.css" type="text/css" rel="stylesheet"/>
+	<link href="doc/prettify/prettify.css" type="text/css" rel="stylesheet"/>
+	<script type="text/javascript" src="doc/prettify/prettify.js"></script>
+	<script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+<script>
+// skin demo
+(function() {
+	var _skin, _lhgcore;
+	var _search = window.location.search;
+	if (_search) {
+		_skin = _search.split('demoSkin=')[1];
+	};
+	
+	document.write('<scr'+'ipt src="lhgdialog.min.js?skin=' + (_skin || 'default') +'"></sc'+'ript>');
+	window._isDemoSkin = !!_skin;
+})();
+</script>
+	<script type="text/javascript" src="demo.js"></script>
+<style type="text/css">
+<!--
+.T_body ul li{clear:both;}
+-->
+</style>
+</head>
+<body>
+<div class="T_body">
+
+<div class="prettyprint" id="demo_content_frm" style="display:none;">
+$.dialog({
+width: '551px', 
+height: '188px', 
+content: 'url:http://www.100dali.com/yhq/index.php?id=1'});
+</div>
+<div class="prettyprint" id="demo_content_frm2" style="display:none;">
+$.dialog({
+width: '551px', 
+height: '188px', 
+content: 'url:http://www.100dali.com/yhq/index.php?id=2'});
+</div>
+<div class="prettyprint" id="demo_content_frm3" style="display:none;">
+$.dialog({
+width: '551px', 
+height: '188px', 
+content: 'url:http://www.100dali.com/yhq/index.php?id=3'});
+</div>
+<div class="prettyprint" id="demo_content_frm4" style="display:none;">
+$.dialog({
+width: '551px', 
+height: '188px', 
+content: 'url:http://www.100dali.com/yhq/index.php?id=4'});
+</div>
+<ul>
+<li>
+<div class="T_d">
+<div class="T_l">
+<h1>满<i>3000</i>减<i>500</i></h1>
+<img src="images/1.jpg" width="80" height="40" />
+</div>
+<div class="T_r">
+<h2>免费</h2>
+<span><a class="runcode bb" name="demo_content_frm"></a></span>
+</div>
+</div>
+<p>隆鼻、双眼皮优惠券，消费满3000减500</p>
+</li>
+<li>
+<div class="T_d">
+<div class="T_l">
+<h1>满<i>2000</i>减<i>300</i></h1>
+<img src="images/1.jpg" width="80" height="40" />
+</div>
+<div class="T_r">
+<h2>免费</h2>
+<span><a class="runcode bb" name="demo_content_frm2"></a></span>
+</div>
+</div>
+<p>脱毛、祛斑美容优惠券，消费满2000减300</p>
+</li><li>
+<div class="T_d">
+<div class="T_l">
+<h1>满<i>6000</i>减<i>1000</i></h1>
+<img src="images/1.jpg" width="80" height="40" />
+</div>
+<div class="T_r">
+<h2>免费</h2>
+<span><a class="runcode bb" name="demo_content_frm3"></a></span>
+</div>
+</div>
+<p>隆胸，吸脂优惠券，消费满6000减1000 </p>
+</li><li>
+<div class="T_d">
+<div class="T_l">
+<h1>满<i>30000</i>减<i>5000</i></h1>
+<img src="images/1.jpg" width="80" height="40" />
+</div>
+<div class="T_r">
+<h2>免费</h2>
+<span><a class="runcode bb" name="demo_content_frm4"></a></span>
+</div>
+</div>
+<p>热玛吉紧肤优惠券，消费满30000减5000</p>
+</li>
+</ul>
+
+</div>
+
+					
+</body>
+</html>

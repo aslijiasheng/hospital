@@ -1,0 +1,4 @@
+ARSC - ARSC Really Simple Chat - Known bugs
+
+- Whispered messages disappear after refresh in version browser_refresh
+- Version browser_xmlhttprequest doesn't show some system messages

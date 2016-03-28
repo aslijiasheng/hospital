@@ -1,0 +1,47 @@
+
+<div class="page">
+	<div class="pageHeader">
+		<form onsubmit="return navTabSearch(this);" action="index.php?action=report&do=t3" method="post">
+		<div class="searchBar">
+			<table class="searchContent">
+				<tr>
+					<td>
+						选择时间范围:<input type="text" name="time_start" size="10" class="date" value="<!--{$postdate_start}-->" readonly="true" />
+						-<input type="text" name="time_over" size="10" class="date" value="<!--{$postdate_over}-->" readonly="true" />
+					</td>
+					<td>
+					<div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div>
+					</td>
+				</tr>
+			</table>
+		</div>
+		</form>
+	</div>
+	<div class="pageContent">
+		<div class="panelBar">
+			<ul class="toolBar">
+			</ul>
+		</div>
+		<table class="list" layouth="65" style="width:250px">
+			<thead>
+				  <tr>
+					<th rowspan="2">科室</th>
+					<th rowspan="2">数量</th>
+				  </tr>
+			</thead>
+			<tbody>			
+			<!--{foreach from=$list item=row}-->
+				<tr>
+					<td><!--{$row.title}--></td>
+					<td><!--{$row.num}--></td>
+				</tr>
+			<!--{/foreach}-->
+				<tr class="count_hh">
+					<td>合计</td>
+					<td><!--{$list2.num}--></td>
+				</tr>
+			</tbody>
+		</table>
+		
+	</div>
+</div>

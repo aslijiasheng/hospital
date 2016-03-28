@@ -1,0 +1,104 @@
+<html>
+ <head>
+  <title>
+   ARSC Really Simple Chat - Documentation - FAQ
+  </title>
+ </head>
+ <body>
+  <h1>ARSC Really Simple Chat</h1>
+
+  <h2>Frequently Asked Questions</h2>
+
+  <hr>
+  
+  <h4>Copyright Notice</h4>
+  <small>
+   Copyright © 2001-2005 Manuel Kiessling
+   <p />
+   This manual is free software; you may redistribute it and/or modify it under
+   the terms of the GNU General Public License as published by the Free Software
+   Foundation; either version 2, or (at your option) any later version.
+   <p />
+   This is distributed in the hope that it will be useful, but <em>without any
+   warranty</em>; without even the implied warranty of merchantability or fitness
+   for a particular purpose.  See the GNU General Public License for more details.
+   <p />
+   A copy of the GNU General Public License is available at <code><a href="http://www.gnu.org/copyleft/gpl.html">the GNU website</a></code>.
+   You can also obtain it by writing to the Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+  </small>
+
+  <hr>
+
+  <p />
+  <b>Q: Help, I can't login to the Admin panel!</b><br />
+  A: You have to use the account <i>Administrator</i> which was created upon install. Yes, with a <b>capital A</b>! The password was presented to you on the install page. If you forgot to write it down, simply delete all ARSC tables from your MySQL database and re-start the install script.
+  
+  <p />
+  <b>Q: The installation was successful, but the chat message frame remains white, and I can not see what I write!</b><br />
+  A: There are a lot of reasons why this might happen. Many mass webhosters do not like chat systems on their servers and therefore disable certain functionality in PHP or Apache that ARSC needs for its streaming version (<i>browser_push</i>). If the webserver is under your control, then you might want to check if ARSC is installed into a directory for which mod_gzip or mod_ssl is enabled. Because with <i>browser_push</i> ARSC streams the content to the browser of the user, these Apache modules have to be disabled for ARSC. If you are not able to disable this modules, then go to the admin interface, section <i>Parameters</i>, and change the parameter <i>disable_browser_push</i> from <i>no</i> to <i>yes</i>.
+  
+  
+  <p />
+  <b>Q: I get <i>Warning: set_time_limit() has been disabled...</i> upon login!</b><br />
+  
+  A: This means that your PHP installation has <a href="http://de.php.net/features.safe-mode">Safe Mode</a> enabled, and the function <i>set_time_limit</i>, which is required to use the <i>browser_push</i> mode of ARSC, has been disabled. Please ask your system administrator to enable <i>set_time_limit</i> for you. If this is not possible, then go to the admin interface, section <i>Parameters</i>, and change the parameter <i>disable_browser_push</i> from <i>no</i> to <i>yes</i>.
+  
+  
+  <p />
+  <b>Q: How about the performance of ARSC, how many users is it able to handle?</b><br />
+  
+  A: This is a difficult one. The main problem is that I don't have 200+ friends I can call in order to do some ARSC load testing. There have been some sessions with ARSC I was able to attend with around 50 people, and I had mixed experiences. Sometimes it worked smooth, sometimes users got kicked randomly, although this was probably not related to server load. If you had ARSC running with 50+ users, I'm eager to know about it! Anyway, I recently found some interesting piece of software that should help keeping the load low on your server if you want to do chat sessions with many people: Lighttpd. It's a minimalistic HTTP server, with PHP support via the FastCGI interface. See the <a href="http://www.lighttpd.net/">homepage of Lighttpd</a>, and especially the section about <a href="http://www.lighttpd.net/documentation/fastcgi.html#preparing-php-as-a-fastcgi-program">preparing PHP as a FastCGI program</a>.
+  
+  
+  <p />
+  <b>Q: What I want to be able to do is have a chat room that only users I have created can log into and/or see.</b><br />
+  
+  A: Currently, the only thing which you can enforce is that only registered users may log in (Admin -> Parameters -> register_force) - but everybody is free to register. You can, however, delete the file that handles registration:<br />
+  <br />
+  yourarscdirectory/base/register.php<br />
+  <br />
+  You should also remove the link to this file, go to Admin -> Layouts -> Default and have a look at " template_home", delete the line:<br />
+  <br />
+  &lt;a href="register.php?arsc_language=&lt;%current_language%&gt;"&gt;&lt;%lang_clicktoregister%&gt;&lt;/a&gt;
+  
+  
+  <p />
+  <b>Q: I want to set up ARSC to use the socket server, how do I do that?</b><br />
+  A: Just go to:<br />
+  <br />
+  http://www.yourserver.com/chat/base/admin/<br />
+  <br />
+  Go to <i>Parameters</i> and set <i>socketserver_use</i> to <i>yes</i>.<br />
+  Then start the socket server. To do this, logon into your server and go to <i>yourarscdirectory/server/</i>, then type:<br />
+  <br />
+  <code>php arsc_chatd.php &</code><br />
+  <br />
+  and press enter. Now the server is up and running! Login to the chat as always.
+  
+  
+  <p />
+  <b>Q: What is the PHP code for displaying who is logged on?</b><br />
+  A: If you would like to show the visitors of your site which users are currently logged into the chat, this code might be what you are looking for:<br />
+  <br />
+  <code>
+&lt;?php<br />
+<br />
+$myc = mysql_connect("TheMySQLServer", "TheMySQLUser", "TheMySQLPassword");<br />
+mysql_select_db("TheDatabaseOfARSC", $myc);<br />
+<br />
+$query = mysql_query("SELECT user FROM arsc_users", $myc);<br />
+while($result = mysql_fetch_array($myc))<br />
+{<br />
+&nbsp;echo $result["user"]."&lt;br /&gt;\n";<br />
+}<br />
+<br />
+mysql_close($myc);<br />
+<br />
+?&gt;
+  </code>
+  <br />
+  <br />
+  Where <i>TheMySQLServer</i>, <i>TheMySQLUser</i>, <i>TheMySQLPassword</i> and <i>TheDatabaseOfARSC</i> are the same values you used for ARSC, in the file <i>config.inc.php</i>.
+
+ </body>
+</html>

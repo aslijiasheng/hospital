@@ -1,0 +1,30 @@
+<form id="pagerForm" method="post" action="?action=smsmail&do=smsmb">
+	<input type="hidden" name="pageNum" value="1" />
+</form>
+<table class="table" width="99%" layoutH="110" rel="jbsxBox">
+		<thead>
+				<tr>
+					<th  orderfield="id">id</th>
+					<th orderfield="intro">短信内容</th>
+					<th width="30">选择</th>
+				</tr>
+			</thead>
+			<tbody>			
+			<!--{foreach from=$list item=row}-->
+				<tr target="id" rel="<!--{$row.id}-->" >
+					<td><!--{$row.id}--></td>
+					<td><!--{$row.intro}--></td>
+					<td>
+					<a class="btnSelect" href="javascript:$.bringBack({intro:'<!--{$row.intro}-->'})" title="查找带回">选择</a>
+				</td>
+				</tr>			
+			<!--{/foreach}-->
+			</tbody>
+	</table>
+	    <div class="panelBar">
+			<div class="pages">
+				<span>共{$total}条</span>
+			</div>
+			
+			<div class="pagination" targetType="navTab" totalCount="{$total}" numPerPage="20" pageNumShown="10" currentPage="{$pageNum}"></div>
+		</div>

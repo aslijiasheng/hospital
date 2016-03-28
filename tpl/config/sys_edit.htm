@@ -1,0 +1,28 @@
+<div class="page">
+	<div class="pageContent">
+		<form  action="?action=config&do=sysupdata" method="post" onsubmit="return validateCallback(this, dialogAjaxDone);" class="pageForm required-validate">	
+		<input type="hidden" name="id" value="<!--{$row.id}-->" />
+		<input type="hidden" name="varname" value="<!--{$row.varname}-->" /><!--判断语句勿删-->
+			<div class="pageFormContent" >
+				<p>
+					<label>参数名称：</label>
+					<!--{$row.title}-->
+				</p>
+				<div class="unit">
+					<label>参数值：</label>
+					<textarea name="value" class="required" rows="3" cols="40" ><!--{$row.value}--></textarea>
+				</div>
+				<div class="unit">
+					<label>说明：</label>
+					<div style="line-height:1.8em;"><!--{$row.intro|default:无}--></div>
+				</div>
+			</div>
+			<div class="formBar">
+				<ul>
+					<li><div class="buttonActive"><div class="buttonContent"><button type="submit">提交</button></div></div>
+					
+				</ul>
+			</div>
+		</form>
+	</div>
+</div>

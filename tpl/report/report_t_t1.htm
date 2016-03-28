@@ -1,0 +1,56 @@
+  <script src="../chart/js/highcharts.js"></script>
+<script src="../chart/js/modules/exporting.js"></script>
+		<script type="text/javascript">
+		function toDecimal(x) {  
+            var f = parseFloat(x);  
+            if (isNaN(f)) {  
+                return;  
+            }  
+            f = Math.round(x*100)/100;  
+            return f;  
+        }//小数点控制
+$(function () {
+    var chart;
+    $(document).ready(function() {
+        chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'csztqy',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: '<!--{$row.bt}-->'
+            },
+            tooltip: {
+                formatter: function() {
+                    return '<b>'+ this.point.name +'</b>: '+ toDecimal(this.percentage) +' %';
+                }
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        color: '#000000',
+                        connectorColor: '#000000',
+                        formatter: function() {
+                            return '<b>'+ this.point.name +'</b>: '+ toDecimal(this.percentage) +' %';
+                        }
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'Browser share',
+                data: <!--{$row.data}-->
+            }]
+        });
+    });
+    
+});
+		</script>
+
+
+<div id="csztqy" style="min-width: 400px; height: 400px; margin: 0 auto"></div>

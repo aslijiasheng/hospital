@@ -1,0 +1,12 @@
+ewm //二维码插件
+ewm/images //二维码图片保存目录，记的清理
+farbtastic //拾色器
+slt //产生临时缩略图，缓存文件在uploads/cache
+xheditor //系统编辑器
+uploadify //系统上传组件
+mail //邮件服务器
+farbtastic //颜色选择组件
+chart //统计图插件
+colortip //js提示插件
+raty   //jq星星评价
+touxiang //用户头像

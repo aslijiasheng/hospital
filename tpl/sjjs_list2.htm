@@ -1,0 +1,48 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<form id="pagerForm" method="post" action="?action=zhtj&do=sjjs2">
+	<input type="hidden" name="pageNum" value="1" />
+</form>
+<div class="page">
+	<div class="pageContent">
+		<div class="panelBar">
+			<ul class="toolBar">
+				<li><a class="edit" href="?action=info&do=edit&id={id}" target="dialog"><span>修改</span></a></li>
+				{if $smarty.session.roleid == "1"}
+				<li><a class="delete" href="?action=info&do=del&id={id}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
+				{/if}
+			</ul>
+		</div>
+		<table class="list" layouth="91" style="width:750px;">
+			<thead>
+				<tr>
+					<th align="center">ID</th>
+					<th align="center">登记时间</th>
+					<th align="center">客户名称</th>
+					<th align="center">客户电话</th>
+					<th align="center">登记人</th>
+					<th align="center">到院次数</th>
+				</tr>
+			</thead>
+			<tbody>			
+			<!--{foreach from=$list item=row}-->
+				<tr target="id" rel="<!--{$row.id}-->" >
+					<td><!--{$row.id}--></td>
+					<td><!--{$row.created_at}--></td>
+					<td><!--{$row.name}--></td>
+					<td ><!--{$row.tel}--></td>
+					<td ><!--{$row.salesid_txt}--></td>
+					<td><!--{$row.visitnum}--></td>
+				</tr>			
+			<!--{/foreach}-->
+			</tbody>
+		</table>
+		<div class="panelBar">
+			<div class="pages">
+				<span>共{$total}条<a href="http://127.0.0.1/index.php?action=zhtj&do=sjjs2&name=%E7%8E%8B%E5%85%88%E7%94%9F" target="navTab" rel="重复详细">详细</a></span>
+			</div>
+			
+			<div class="pagination" targetType="navTab" totalCount="{$total}" numPerPage="50" pageNumShown="10" currentPage="{$pageNum}"></div>
+
+		</div>
+	</div>
+</div>

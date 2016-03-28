@@ -1,0 +1,35 @@
+<div class="page">
+	<div class="pageContent">
+		<form method="post" action="?action=money&do=payadd" class="pageForm required-validate" onsubmit="return validateCallback(this, navTabAjaxDone);">
+		<input type="hidden" name="zhiliaoid" value="<!--{$row.id}-->" />
+		<input type="hidden" name="infoid" value="<!--{$row.infoid}-->" />
+		<input type="hidden" name="money" value="<!--{$row.money}-->" />
+		<div class="pageFormContent" layoutH="56">
+		本次治疗费用已收：你可以进行补交：
+		<div class="unit">
+					<label>客户名称：</label>
+					<input name="name" type="text" size="25" value="<!--{$row.name}-->"  disabled="true"/>
+				</div>
+				<div class="divider">divider</div>
+				<div class="unit">
+					<label>补交金额：</label>
+					<span ><input name="money_ss" type="text" size="10" value="<!--{$row.money_ss}-->" alt="现收" class="digits" id="money_ss" onChange="getResult()"/></span>  
+					<span><input name="yepay" type="text" size="10" value="<!--{$row.money_yepay}-->" alt="余额抵扣" class="digits" id="yepay" onChange="getResult()"/></span>
+				 </div>
+				<div class="divider">divider</div>
+				<div>
+					<label>消费备注：</label>
+					<textarea name="intro2"  cols="60" rows="5">补交：</textarea>
+				</div>
+	 </div>
+				
+			<div class="formBar">
+				<ul>
+					<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+				</ul>
+			</div>
+		</form>
+	</div>
+</div>
+
+

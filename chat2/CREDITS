@@ -1,0 +1,34 @@
+ARSC - ARSC Really Simple Chat - Credits
+
+MANUEL KIESSLING <manuel@kiessling.net> is the project founder,
+maintainer, and main code contributor.
+
+GREG ELIN <greg@fotonotes.net> provided patches and, more importantly,
+is always at hand if the project is about to come to a halt. He also
+hacked the first InRoom-Chat functionality into ARSC.
+
+MARKUS FISCHER <mfischer@php.net> did a huge job in helping to provide
+a fast and stable socket server.
+
+DAVID S. ISENBERG <isen@isen.com> and CLAY SHIRKY <clay@shirky.com>
+specified and wrote up the InRoom-Chat functionality.
+
+
+These people translated ARSC into other languages:
+
+MARIO HROŠ <megasoft.trinec@seznam.cz>
+KR@§H <webmaster@gratisringtones.nl>
+KASPER SOUREN <kasper@ppcnet.nl>
+HARRI SUUTARI <harri@suutari.baana.suomi.net>
+EMMANUEL FAIVRE <manu@manucorp.com>
+DEMOSTHENES KOPTSIS <dkoptsis@hotmail.com>
+LUCA CLAUDIO <dlc2000@libero.it>
+STARKNIGHT <starknight@libero.it>
+MARIUSZ JURCZYK <admin@cafe.netinfo.pl>
+ADRIANO SEIXAS DEKKER <bart@email.com.br>
+RADOVAN DACEJ <radek@luca.sk>
+RIDVAN AGAR <ridvan.agar@web.de>
+JACK YEH <vodkayeh@ms32.hinet.net>
+GIORGIO <webmaster@giosearch.it>
+FABRIZIO CIACCHI <virusbye@inwind.it>
+SERGEY SKREBNEV <saver@pochtamt.ru>

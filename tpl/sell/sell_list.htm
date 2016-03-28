@@ -1,0 +1,149 @@
+<form id="pagerForm" method="post" action="index.php?action=sell">
+	<input type="hidden" name="pageNum" value="1" />
+	<input type="hidden" name="typeid"  value="<?php echo $this->_var['typeid'];?>"/>
+	<input type="hidden" name="salesid"  value="<?php echo $this->_var['salesid'];?>"/>
+	<input type="hidden" name="time_start"  value="<?php echo $this->_var['time_start'];?>"/>
+	<input type="hidden" name="time_over"  value="<?php echo $this->_var['time_over'];?>"/>
+	<input type="hidden" name="fz"  value="<?php echo $this->_var['fz'];?>"/>
+	<input type="hidden" name="productid"  value="{$productid}"/>
+</form>
+<style type="text/css">
+<!--
+ form.tj{float:left;}
+ /* level*/
+.sxm{width: 150px;overflow:hidden;background:transparent;border:1px solid #000;}
+-->
+</style>
+
+<div class="page">
+	<div class="pageHeader">
+		<form onsubmit="return navTabSearch(this);" action="index.php?action=sell" method="post" class="tj">
+		<div class="searchBar">
+			<table class="searchContent">
+				<tr>
+					<td>
+						姓名(或)电话:<input type="text" name="nt" size="12"/>
+					</td>
+					 <td>
+						<input type="radio" name="fz"  value="1" />初诊
+						<input type="radio" name="fz"  value="2" />复诊
+					</td>
+					<td>
+						来访时间:<input type="text" name="time_start" size="9" class="date" readonly="true" />
+						-<input type="text" name="time_over" size="9" class="date" readonly="true" />
+					</td>					
+					<td>
+					<!--{$salesid_cn}-->
+					</td>
+					<td>
+					<!--{$typeid_cn}-->
+					</td>
+					<td>
+					<div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div>
+					</td>
+				</tr>
+			</table>
+		</div>
+		</form>
+	</div>
+	<div class="pageContent">
+		<div class="panelBar">
+			<ul class="toolBar">
+			    <!--<li><a class="edit" href="?action=zhiliao&do=single&id={id}" target="dialog" rel="zhiliao"><span>派单</span></a></li>-->
+				<li><a class="shuangchuan" href="?action=sell&do=tpad&id={id}" target="navTab" rel="picadd" ><span>上传图片</span></a></li>
+				<li class="line">line</li>
+				<li><a class="shoufei" href="?action=money&do=pay&id={id}" target="dialog"><span>收费</span></a></li>
+				<li><a class="huiyuan" href="?action=info&do=agent&id1={id}" target="dialog"><span>设为会员</span></a></li>
+				<li class="line">line</li>
+				<!--<li><a class="ksdj" href="?action=section&do=new&id={id}" target="dialog" rel="section"><span>科室登记</span></a></li>-->
+				<li><a class="huifang" href="?action=visits&do=new&id1={id}" target="dialog"><span>回访</span></a></li>
+				<li><a class="duanxin" href="?action=smsmail&do=sms&id1={id}" target="dialog" width="600" height="330" rel="sms"><span>短信</span></a></li>
+				<li><a class="show" href="?action=sell&do=show&id={id}" target="dialog" width="800" height="302"><span>明细</span></a></li>
+				<li><a class="huifang" href="?action=sell&do=picview&id1={id}" target="navTab" rel="picview"><span>图片对比</span></a></li>
+				<li><a class="edit" href="?action=sell&do=edit&id={id}" target="dialog"><span>修改</span></a></li>
+				 {if $smarty.session.roleid == "1"}
+				<li><a class="delete" href="?action=sell&do=del&id={id}" target="ajaxTodo" title="确定要删除吗?"><span>删除</span></a></li>
+				{/if}
+			</ul>
+		</div>
+		<style type="text/css">
+		<!--
+		.ks{float:left;width:81%;overflow:hidden;}
+		.ksc{width:100%;overflow:hidden;}
+		-->
+		</style>
+		<div class="ksc">
+		<div class="ks" >
+		<table class="list" layouth="94" style="width:100%;">
+			<thead>
+				<tr>
+					<th align="center">ID</th>
+					<th align="center">来访时间</th>
+					<th align="center">客户名称</th>
+					<th align="center">客户电话</th>
+					<th align="center">性别</th>
+					<th align="center">接待人</th>
+					<th align="center">登记人</th>
+					<th align="center">预约方式</th>
+					<th align="center">治疗方法</th>
+					<th align="center">到诊情况</th>
+				</tr>
+			</thead>
+			<tbody>			
+			<!--{foreach from=$list item=row}-->
+				<tr target="id" rel="<!--{$row.id}-->,<!--{$row.infoid}-->" >
+					<td><!--{$row.id}--></td>
+					<td><!--{$row.created}--></td>
+					<td class="<!--{$row.vip}-->"><a href="?action=sell&do=intro&id=<!--{$row.id}-->" target="ajax" rel="sellBox"><!--{$row.name}--></a></td>
+					<td><!--{$row.dh_txt}--></td>
+					<td><!--{$row.xb}--></td>
+					<td><!--{$row.salesid2_txt}--></td>
+					<td><!--{$row.salesid_txt}--></td>
+					<td><!--{$row.typeid_txt}--></td>
+					<td><select class="sxm" > <!--{$row.zlff}--></select></td>
+
+					<td><!--{$row.fz_cn}--></td>
+				</tr>			
+			<!--{/foreach}-->
+			</tbody>
+		</table>
+		</div>
+		<div id="sellBox"  style="width:18%;float:left;background:#fff;overflow:hidden;" layouth="94">
+			<!--说明：点击客户姓名，查看更多信息-->
+			<style type="text/css">
+				<!--
+				.accordionContent{font-size:12px;}
+				.accordionContent .nr{padding:3px;line-height:24px;width:95%;height: 92%;overflow:hidden;}
+				-->
+			</style>
+		<div class="accordion" >
+		<div class="accordionHeader">
+			<h2>更多信息</h2>
+		</div>
+		<div class="accordionContent" layouth="146">
+		<div class="nr">
+		来访备注：<!--{$row2.intro}--></br>
+		预约信息：</br>
+		<iframe
+src="?action=info&do=chaxun1&id=<!--{$row2.infoid}-->" width="95%" height="95%" frameborder="no" background="translation" border="0" marginwidth="0" marginheight="0" scrolling="no"> </iframe></div>
+		</div>
+		<div class="accordionHeader">
+			<h2>回访记录</h2>
+		</div>
+		<div class="accordionContent" layouth="146">
+			<div class="nr"><iframe
+src="?action=visits&do=chaxun1&id=<!--{$row2.infoid}-->" width="95%" height="95%" frameborder="no" background="translation" border="0" marginwidth="0" marginheight="0" scrolling="no"> </iframe></div>
+		</div>
+	</div><!--附件信息--->
+		 </div>
+		</div><!--ksc-->
+		<div class="panelBar">
+			<div class="pages">
+				<span>共来访{$total}次&#9786;来访<!--{$list2.num}-->个（初诊<!--{$list2.num2}-->个|复诊<!--{$list2.num3}-->个）</span>
+			</div>
+			
+			<div class="pagination" targetType="navTab" totalCount="{$total}" numPerPage="20" pageNumShown="6" currentPage="{$pageNum}"></div>
+
+		</div>
+	</div>
+</div>

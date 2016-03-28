@@ -1,0 +1,100 @@
+<div class="page">
+	<div class="pageContent">
+		<form method="post" action="?action=info&do=updata" class="pageForm required-validate" onsubmit="return validateCallback(this, navTabAjaxDone);">
+		<input type="hidden" name="id" value="<!--{$row.id}-->" />
+		<input type="hidden" name="created_at" value="<!--{$row.created_at}-->" /><!--判断用-->
+		<input type="hidden" name="salesid" value="<!--{$row.salesid}-->" /><!--判断用-->
+			<div class="pageFormContent" layoutH="56">
+				<div class="unit">
+					<label>客户名称： </label>
+					<input name="name" class="required" type="text" size="30" value="<!--{$row.name}-->" alt=""/>	
+				</div>
+				<div class="unit">
+					<label>客户电话：</label>
+					<input name="tel" class="" type="text" size="30" value="<!--{$row.tel}-->" alt=""/>
+				</div>
+				<div class="unit">
+				<p>
+					<label>预约时间：</label>
+					<input name="yy_at"  type="text" size="20" value="<!--{$row.yy_at}-->" class="date" readonly="true"/>
+					<a class="inputDateButton" href="javascript:;">选择</a>
+				</p>
+				<p>
+					<label class="required">性别：</label>
+                    <input type="radio" name="xb"  value="女" <!--{$row.checked0}--> />女
+                    <input type="radio" name="xb"  value="男" <!--{$row.checked1}--> />男
+				</p>
+				<p>
+					<label>年龄：</label>					
+					<input name="nl" class="" type="text" size="10" value="<!--{$row.nl}-->" alt=""/>
+				</p>
+				</div>
+				<div class="divider">divider</div>
+				{if $smarty.session.roleid == "1"}
+				 <div class="unit">
+					<label>登记人调整：</label>
+					<!--{$salesid_cn}-->
+				</div>
+				<div class="divider">divider</div>{/if}
+				<div class="unit">
+					<p>
+					<label>预约方式：</label>
+					<!--{$typeid_cn}-->
+					<!--{$areaid_cn}-->
+					</p>{if $smarty.session.roleid == "1"}
+					<p>
+					<label>上线选择：</label>
+					<input name="sx.id"  type="text" size="30" value="<!--{$row.parentid}-->" style="display:none;"/>
+                    <input name="sx.name"  type="text" size="20" value="<!--{$row.sxname}-->" readonly/>
+					<a class="btnLook" href="?action=info&do=listsx" lookupGroup="sx" >上线选择》》</a>	
+				    </p>{/if}
+				</div>
+				<div class="unit">
+					<label>整形项目：</label>
+					<input name="zxxm" class="" type="text" size="30" value="<!--{$row.zxxm}-->"/>
+				</div>
+
+				<div class="unit">
+					<label>科室选择：</label>
+					<!--{$product_cn}-->
+				</div>
+				<div class="unit">
+					<label>医生选择：</label>
+					<!--{$doctor_cn}-->
+				</div>
+				<div class="divider">divider</div>
+				<div class="unit">
+				<p>
+					<label>身份证号：</label>
+					<input name="card" class="" type="text" size="30" value="<!--{$row.card}-->" alt=""/>
+				</p>
+				<p>
+					<label>客户邮箱：</label>
+					<input name="mail" class="" type="text" size="30" value="<!--{$row.mail}-->" alt=""/>
+				</p>
+				<p>
+					<label>QQ号：</label>
+					<input name="qq" class="" type="text" size="30" value="<!--{$row.qq}-->" alt=""/>
+				</p>
+				<p>
+					<label>客户地址/单位：</label>
+					<input name="address" class="" type="text" size="30" value="<!--{$row.address}-->" alt=""/>
+				</p>
+				<p>
+					<label>来源关键词：</label>
+					<input name="keyword" type="text" size="30" value="<!--{$row.keyword}-->" alt=""/>
+				</p>
+				</div>
+				<div class="unit">
+					<label>备注：</label>
+					<textarea class="xheditor" name="intro" rows="6" cols="45"  tools="mini"><!--{$row.intro}--></textarea>
+				</div>
+			</div>
+			<div class="formBar">
+				<ul>
+					<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+				</ul>
+			</div>
+		</form>
+	</div>
+</div>

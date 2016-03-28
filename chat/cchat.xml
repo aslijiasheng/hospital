@@ -1,0 +1,22 @@
+<cchat 
+
+roomid = "百达丽"
+roomname = "哈哈哈"
+
+username = ""
+reserved = "晨风,管理,cenfun,颓废,7huo｜焱燚"
+allow_rename = ""
+
+auto_live = ""
+cmp_url = "cmp.swf"
+cmp_autoload = ""
+
+announce = "打酱油"
+bgcolor = "f5f5f5"
+sound = "enter.mp3,message.mp3"
+admin = "C53F6F684A4B7B5552BD9F4B43117F67"
+
+badwords = "机票,六合彩,枪支,摇头丸,迷歼药,妈的,日你,你妈,操你,操你妈,我草,共产党"
+counter = ""
+
+/>

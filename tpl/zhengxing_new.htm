@@ -1,0 +1,59 @@
+
+<div class="page">
+	<div class="pageContent">
+		<form method="post" action="?action=zhengxing&do=add" class="pageForm required-validate" onsubmit="return validateCallback(this, navTabAjaxDone)">
+		<input type="hidden" name="infoid" value="<!--{$row.infoid}-->" />
+		<input type="hidden" name="sellid" value="<!--{$row.id}-->" />
+		<input type="hidden" name="created_at" value="<!--{$row.created_at}-->" />
+		<input type="text" name="salesid" value="<!--{$smarty.session.userid}-->" class="input" style="display:none;"/>
+			<div class="pageFormContent" layoutH="56">
+				<div class="unit">
+					<label>客户名称：</label>
+					<input name="name" class="required" type="text" size="30" value="<!--{$row.name}-->" readonly/>
+				</div>
+				<div class="unit">
+					<label class="required">到诊详细：</label>
+                    <input type="text" name="xb"  size="30" value="<!--{$row.xb}-->：<!--{$row.fz_cn}--> 电话：<!--{$row.tel}-->"  readonly/>
+				</div>
+				<div class="unit">
+					<label>年龄：</label>
+					<input name="nl"  type="text" size="5" value="<!--{$row.nl}-->" alt=""/>
+					<span class="inputInfo">如果年龄不对,请修改</span>
+				</div>
+				<div class="unit">
+					<label>诊断结果：</label>
+					<input name="zdjg"  type="text" size="30" value="" alt=""/>
+				</div>
+				<div class="unit">
+					<label>手术方法：</label>
+					<input name="zlff"  type="text" size="30" value="" alt=""/>
+				</div>
+				<div class="unit">
+					<label>治疗次数：</label>
+					<input name="zlcs"  type="text" size="5" value="" alt=""/>
+				</div>
+				<div class="unit">
+				 	<label>主治医生：</label>
+					<!--{$doctor_cn}-->
+				</div>
+				<div class="unit">
+					<label>执行人：</label>
+					
+					<input name="zx.orgxh"  type="text" size="30" value="" style="display:none;"/>
+                    <input name="zx.orgName"  type="text" size="30" value="" readonly/>
+					<a class="btnLook" href="?action=user&do=listzxdh"  lookupGroup="zx" >添加执行人》》</a>
+					<span class="inputInfo">(通过复选框多值查找回带)</span>
+				</div>
+				<div class="unit">
+					<label>备注：</label>
+					<textarea rows="5" cols="60" class="textInput" name="intro"></textarea>
+				</div>
+			</div>
+			<div class="formBar">
+				<ul>
+					<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+				</ul>
+			</div>
+		</form>
+	</div>
+</div>

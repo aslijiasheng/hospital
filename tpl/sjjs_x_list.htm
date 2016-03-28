@@ -1,0 +1,59 @@
+<form id="pagerForm" method="post" action="?action=info&do=sjjs_x">
+	<input type="hidden" name="pageNum" value="1" />
+</form>
+<div class="page">
+	<div class="pageHeader">
+		<form onsubmit="return navTabSearch(this);" action="index.php?action=info" method="post">
+		<div class="searchBar">
+			<table class="searchContent">
+				<tr>
+					<td>
+						姓名(或)电话:<input type="text" name="nt" size="12"/>
+					</td>
+					<td>
+					<div class="buttonActive"><div class="buttonContent"><button type="submit">搜索</button></div></div>
+					</td>
+					<td>
+					搜索重复数据
+					</td>
+				</tr>
+			</table>
+		</div>
+		</form>
+	</div>
+	<div class="pageContent">
+		<div class="panelBar">
+			<ul class="toolBar">
+			<form onsubmit="return navTabSearch(this);" action="?action=zhtj&do=sjjs" method="post">
+			    <li><input type="radio" name="ms"  value="tel" checked="checked"/>按电话
+                    <input type="radio" name="ms"  value="name" />按姓名</li>
+					<li><button type="submit">搜索</button></li>
+			  </form>
+			</ul>
+		</div>
+		<table class="list" layouth="91" style="width:500px;">
+			<thead>
+				<tr>
+					<th align="center">客户名称</th>
+					<th align="center">重复次数</th>
+				</tr>
+			</thead>
+			<tbody>			
+			<!--{foreach from=$list item=row}-->
+				<tr target="id" rel="<!--{$row.id}-->" >
+					<td><!--{$row.name}--></td>
+					<td><!--{$row.dd}--></td>
+				</tr>			
+			<!--{/foreach}-->
+			</tbody>
+		</table>
+		<div class="panelBar">
+			<div class="pages">
+				<span>共{$total}条，</span>
+			</div>
+			
+			<div class="pagination" targetType="navTab" totalCount="{$total}" numPerPage="50" pageNumShown="10" currentPage="{$pageNum}"></div>
+
+		</div>
+	</div>
+</div>

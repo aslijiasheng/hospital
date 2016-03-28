@@ -1,0 +1,55 @@
+﻿.x-color-palette { float:left;   
+    cursor: pointer;
+    background-color:#e5edef;
+    border:solid 1px #b8d0d6;
+    padding-left:3px;
+    padding-top:3px; 
+}
+
+.x-color-palette a {
+   border: 1px solid #fff;
+   float: left;   
+   text-decoration: none;
+   -moz-outline: 0 none;
+   outline: 0 none;
+   cursor: pointer;
+   margin:1px;   
+}
+
+.x-color-palette a:hover {
+	 border: 1px solid #b8d0d6;
+}
+.x-color-palette a em span
+{
+	padding:0px;
+	cursor: pointer;
+    display: block;
+    height: 11px;
+    line-height: 11px;
+    width: 11px;
+   
+}
+.x-color-palette a:hover em span
+{
+}
+
+.x-color-palette em {
+    display: block;   
+}
+ .containtdiv
+ {
+
+   background:url("images/dropdown/dropdownhover.gif") no-repeat right center;    
+padding:0;
+   cursor:pointer;
+   overflow:hidden; 
+   float:left;
+   width:40px;
+   height:18px;margin-right:5px;
+ }
+ .leftdiv
+ {float:left;
+   width :25px;padding:0;margin:0;
+   height:16px;
+   font-size:12px; overflow:hidden;  
+ }

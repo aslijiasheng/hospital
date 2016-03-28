@@ -1,0 +1,39 @@
+ <div class="panelBar">
+			<ul class="toolBar">
+				<li class="line">line</li>
+				<li><a class="add" href="?action=config&do=pricenew&lmid=<!--{$list2.lmid}-->" target="dialog" ><span>添加</span></a></li>
+				<li><a class="edit" href="?action=config&do=priceedit&id={id}" target="dialog"><span>修改</span></a></li>
+				<li><a class="delete" href="?action=config&do=pricedel&id={id}" target="ajaxTodo" title="您确定要删除吗?"><span>删除</span></a></li>
+				<li class="line">line</li>
+			</ul>
+			</div>
+		<table class="table" layouth="112" style="width:90%">
+			<thead>
+				<tr>
+					<th align="center">ID</th>
+					<th align="center">名称</th>
+					<th align="center">价格</th>
+					<th align="center" style="width:400px;">备注</th>
+					<th align="center">创建时间</th>
+				</tr>
+			</thead>
+			<tbody>			
+			<!--{foreach from=$list item=row}-->
+				<tr class="edit" target="id" rel="<!--{$row.id}-->" >
+					<td><!--{$row.id}--></td>
+					<td ><!--{$row.item}--></td>
+					<td><!--{$row.price}--></td>
+					<td><!--{$row.intro}--></td>
+					<td><!--{$row.created_at}--></td>
+				</tr>			
+			<!--{/foreach}-->
+			</tbody>
+		</table>
+		
+		<div class="panelBar" borter-bottom:none;>
+			<div class="pages">
+				<span>共{$total}条</span>
+			</div>
+			
+			<div class="pagination" targetType="navTab" totalCount="{$total}" numPerPage="20" pageNumShown="10" currentPage="{$pageNum}"></div>
+		</div>

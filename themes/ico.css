@@ -1,0 +1,29 @@
+/* 补充会员级别 */
+.pageContent td.ico1{background: url(../images/vip/level3.gif) 2px right no-repeat;}
+/* 操作图标 */
+.panelBar .toolBar a.chazhao span { background-position:-120px -696px;}
+.panelBar .toolBar a.duanxin span { background-position:-120px -719px;}
+.panelBar .toolBar a.laifang span { background-position:-120px -746px;}
+.panelBar .toolBar a.huifang span { background-position:-120px -771px;}
+.panelBar .toolBar a.huiyuan span { background-position:-120px -796px;}
+.panelBar .toolBar a.ksdj span { background-position:-120px -820px;}
+.panelBar .toolBar a.shoufei span { background-position:-120px -846px;}
+.panelBar .toolBar a.mingxi span { background-position:0 -765px;}
+.panelBar .toolBar a.shuangchuan span { background-position:0 -820px;}
+.panelBar .toolBar a.xiazai span { background-position:0 -846px;}
+/*公共样式*/
+.useredit,.userlogout,.jiaocheng,.shengji,.wenti{background:url(../images/cs_tb2.png) -226px -194px no-repeat;width: 13px;height: 13px;}
+.userlogout{background-position:-290px -194px;}
+.jiaocheng{background-position:-259px -194px;}
+.shengji{background-position:-353px -194px;}
+.wenti{background-position:-323px -194px;}
+/* 聊天窗样式现在没用这个 */
+.fixedBtn {POSITION: fixed; WIDTH: 350px; HEIGHT: 84px; TOP: 160px; RIGHT: -330px;}
+* HTML .fixedBtn {POSITION: absolute; BOTTOM: auto}
+
+.fixedBtn .feedback {POSITION: absolute; TEXT-INDENT: -2000px; OUTLINE-STYLE: none; OUTLINE-COLOR: invert; OUTLINE-WIDTH: 0px; WIDTH: 33px; DISPLAY: inline-block; BACKGROUND: url(images/feedback.gif); HEIGHT: 84px; TOP: 0px; LEFT: -10px}
+.fixedBtn .feedback:hover {BACKGROUND-POSITION: -33px 0px}
+
+.feedbackCnt {BORDER-BOTTOM: 0px; BORDER-LEFT: 0px;  BACKGROUND: #fff; BORDER-TOP: 0px; BORDER-RIGHT: 0px; PADDING-TOP: 5px}
+
+.fb-open {BORDER-BOTTOM: #cfcfcf 1px solid; BORDER-LEFT: #cfcfcf 1px solid; BORDER-TOP: #cfcfcf 1px solid; BORDER-RIGHT: #cfcfcf 1px solid; borer-right: none; box-shadow: 2px 2px 8px #aaa}
