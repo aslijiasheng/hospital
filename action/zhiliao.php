@@ -25,7 +25,7 @@ if($do==""){
 	if(in_array($_SESSION[roleid],$yhz)&&empty($_POST['name'])){$search .= " and s.salesid = '$_SESSION[userid]'";} //判断查看和搜索显示
 	//设置分页
 	if($_POST[numPerPage]==""){
-		$numPerPage="30";
+		$numPerPage="20";
 	}else{
 		$numPerPage=$_POST[numPerPage];
 	}
@@ -112,6 +112,7 @@ if($do==""){
 	//$smt->assign('zlxm_cn',select($pdid,"pdid",$row[sellid],"派单人2"));
 	$smt->assign('numPerPage',$_POST[numPerPage]); //显示条数
 	$smt->assign('pageNum',$_POST[pageNum]); //当前页数
+	$smt->assign('state',$_POST[state]); //当前页数
 	$smt->assign('total',$total);
 	$smt->assign('title',"治疗列表");
 	$smt->display('zhiliao/zhiliao_list.htm');

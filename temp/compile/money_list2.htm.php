@@ -61,12 +61,14 @@
 				<tr>
 					<th align="center">ID</th>
 					<th align="center">来院时间</th>
+					<th align="center">收取定金时间</th>
 					<th align="center">客户名称</th>
 					<th align="center">接待人</th>
 					<th align="center">登记人</th>
 					<th align="center">派单人</th>
 					<th align="center">客户电话</th>
 					<th align="center">到诊情况</th>
+					<th align="center">定金</th>
 					<th align="center">实收金额</th>
 					<th align="center">本次欠费</th>
 					<th align="center">账户消费</th>
@@ -75,22 +77,25 @@
 				</tr>
 			</thead>
 			<tbody>			
-			<?php $_from = $this->_var['list']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'row');if (count($_from)):
+<?php 
+$_from = $this->_var['list']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'row');if (count($_from)):
     foreach ($_from AS $this->_var['row']):
 ?>
-				<tr target="id" rel="<?php echo $this->_var['row']['id']; ?>" >
+<tr target="id" rel="<?php echo $this->_var['row']['id']; ?>" <?php if(in_array($this->_var['row']['infoid'], $this->_var['money_dj_arr']) && $this->_var['row']['money_dj'] == 0 && (strtotime(date('Y-m-d', $this->_var['row']['created_at'])) - strtotime($this->_var['row']['create_at_dj'])) <= 30) {echo "style='background-color:#99FF99'";} ?> >
 					<td><?php echo $this->_var['row']['id']; ?></td>
-					<td ><?php echo $this->_var['row']['created_at']; ?></td>
+					<td ><?php echo  $this->_var['row']['created_at']; ?></td>
+					<td ><?php echo  ($this->_var['row']['money_dj'] == 0) ? '' : $this->_var['row']['create_at_dj']; ?></td>
 					<td class="<?php echo $this->_var['row']['vip']; ?>"><a href="?action=sell&do=show&id=<?php echo $this->_var['row']['id']; ?>" target="dialog" width="800"><?php echo $this->_var['row']['name']; ?></a></td>
 					<td><?php echo $this->_var['row']['salesid2_txt']; ?></td>
 					<td><?php echo $this->_var['row']['salesid_txt']; ?></td>
 					<td><?php echo $this->_var['row']['paidan_txt']; ?></td>
 					<td><?php echo $this->_var['row']['dh_txt']; ?></td>
 					<td><?php echo $this->_var['row']['fz_cn']; ?></td>
-					<td><?php echo $this->_var['row']['money_ss']; ?></td>
-					<td><?php echo $this->_var['row']['money_qf']; ?></td>
-					<td><?php echo $this->_var['row']['yepay']; ?></td>
-					<td><?php echo $this->_var['row']['money_tk']; ?></td>
+					<td><?php echo $this->_var['row']['money_dj']; ?></td>
+					<td ><?php echo  ($this->_var['row']['money_dj'] == 0) ? $this->_var['row']['money_ss'] : 0; ?></td>
+					<td ><?php echo  ($this->_var['row']['money_dj'] == 0) ? $this->_var['row']['money_qf'] : 0; ?></td>
+					<td ><?php echo  ($this->_var['row']['money_dj'] == 0) ? $this->_var['row']['yepay'] : 0; ?></td>
+					<td ><?php echo  ($this->_var['row']['money_dj'] == 0) ? $this->_var['row']['money_tk'] : 0; ?></td>
 					<td><a href="?action=smsmail&do=sms&id=<?php echo $this->_var['row']['infoid']; ?>" target="navTab" >短信</a></td>
 				</tr>
 				

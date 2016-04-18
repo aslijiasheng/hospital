@@ -111,9 +111,12 @@ if($do=="list2"){
 	}else{
 		$numPerPage=$_POST[numPerPage];
 	}
-
 	if($_POST[pageNum]==""||$_POST[pageNum]=="0" ){$pageNum="0";}else{$pageNum=($_POST[pageNum]-1)*$numPerPage;}
 	$info_num=mysql_query("SELECT * FROM `cs_sell` as s,`cs_info` as i where s.infoid = i.id $search and (s.money_ss>0||s.yepay>0)");//当前频道条数
+	if($_POST['paidanid']){
+		//$sqlNum = "SELECT sum(s.money_ss) as num FROM `cs_sell` as s,`cs_info` as i, `cs_zhiliao` as c where s.infoid = i.id and c.sellid = s.id  $search";
+		$info_num=mysql_query("SELECT * FROM `cs_sell` as s,`cs_info` as i, `cs_zhiliao` as c where s.infoid = i.id and c.sellid = s.id $search and (s.money_ss>0||s.yepay>0)");//当前频道条数
+	}
 	$total=mysql_num_rows($info_num);//总条数	
 	
 	//类型
@@ -134,14 +137,51 @@ if($do=="list2"){
 	}
 
 	//查询
-	$sql="SELECT i.name,i.tel,i.zxxm,i.salesid,i.typeid,c.salesid as paidan_person,i.levelid,s.id,s.salesid2,s.infoid,s.productid,s.doctorid,s.intro,s.created_at,s.fz,s.money_qf,s.money_ss,s.yepay,s.money_tk FROM `cs_sell` as s,`cs_info` as i, `cs_zhiliao` as c where s.infoid = i.id and c.sellid = s.id $search and (s.money_ss>0||s.yepay>0||s.money_qf>0||s.money_tk>0) order by s.id desc LIMIT $pageNum,$numPerPage";
+	
+	//$sql="SELECT i.name,i.tel,i.zxxm,i.salesid,i.typeid,c.salesid as paidan_person,i.levelid,s.id,s.salesid2,s.infoid,s.productid,s.doctorid,s.intro,s.created_at,s.fz,s.money_qf,s.money_ss,s.yepay,s.money_tk FROM `cs_sell` as s,`cs_info` as i, `cs_zhiliao` as c where s.infoid = i.id and c.sellid = s.id $search and (s.money_ss>0||s.yepay>0||s.money_qf>0||s.money_tk>0) order by s.id desc LIMIT $pageNum,$numPerPage";
+    //,m.created_at as create_at_dj,m.money_dj, 
+	$sql="SELECT i.name,i.tel,i.zxxm,i.salesid,i.typeid,c.salesid as paidan_person,i.levelid,s.id,s.salesid2,s.infoid,s.productid,m.created_at as create_at_dj,m.money_dj,s.doctorid,s.intro,s.created_at,s.fz,s.money_qf,s.money_ss,s.yepay,s.money_tk from  `cs_sell` AS s inner join `cs_info` AS i on s.infoid = i.id inner join `cs_money` AS m on m.sellid = s.id left join `cs_zhiliao` AS c on c.sellid = s.id where 1=1 $search and (s.money_ss>0||s.yepay>0||s.money_qf>0||s.money_tk>0) order by s.id desc LIMIT $pageNum,$numPerPage";
 	$db->query($sql);
 	$list=$db->fetchAll();
 
+    $djsql="SELECT i.id from  `cs_sell` AS s inner join `cs_info` AS i on s.infoid = i.id inner join `cs_money` AS m on m.sellid = s.id left join `cs_zhiliao` AS c on c.sellid = s.id where 1=1 $search and (s.money_ss>0||s.yepay>0||s.money_qf>0||s.money_tk>0) and m.money_dj != 0 order by s.id desc ";
+	$db->query($djsql);
+	$djlist=$db->fetchAll();
+    $money_dj_arr = array();
+    $money_dj_arr = array();
+    foreach($djlist as $key => $value){
+        $money_dj_arr[] = $value['id'];
+    }
+
 	//合计
-	$sql2.="SELECT (SELECT sum(s.money_ss) FROM `cs_sell` as s,`cs_info` as i where s.infoid = i.id $search) as num,(SELECT sum(s.money_tk) FROM `cs_sell` as s,`cs_info` as i where s.infoid = i.id $search) as num3,(SELECT sum(s.money_qf) FROM `cs_sell` as s,`cs_info` as i where s.infoid = i.id $search) as num2,sellid FROM `cs_zhiliao` as c";
-	$db->query($sql2);
-	$list2=$db->fetchRow();
+	$sql2="SELECT (SELECT sum(s.money_ss) FROM `cs_sell` as s,`cs_info` as i where s.infoid = i.id $search) as num,(SELECT sum(s.money_tk) FROM `cs_sell` as s,`cs_info` as i where s.infoid = i.id $search) as num3,(SELECT sum(s.money_qf) FROM `cs_sell` as s,`cs_info` as i where s.infoid = i.id $search) as num2,sellid FROM `cs_zhiliao` as c";
+	//print_r($sql2) ;//exit;
+	$sqlNum = "SELECT sum(s.money_ss) as num FROM `cs_sell` as s,`cs_info` as i where s.infoid = i.id  $search";
+	$sql3Num = "SELECT sum(s.money_tk) as num3 FROM `cs_sell` as s,`cs_info` as i where s.infoid = i.id   $search";
+	$sql2Num = "SELECT sum(s.money_qf) as num2 FROM `cs_sell` as s,`cs_info` as i where s.infoid = i.id 	$search";
+	if($_POST['paidanid']){
+		$sqlNum = "SELECT sum(s.money_ss) as num FROM `cs_sell` as s,`cs_info` as i, `cs_zhiliao` as c where s.infoid = i.id and c.sellid = s.id  $search";
+		$sql3Num = "SELECT sum(s.money_tk) as num3 FROM `cs_sell` as s,`cs_info` as i, `cs_zhiliao` as c where s.infoid = i.id and c.sellid = s.id   $search";
+		$sql2Num = "SELECT sum(s.money_qf) as num2 FROM `cs_sell` as s,`cs_info` as i, `cs_zhiliao` as c where s.infoid = i.id and c.sellid = s.id 	$search";
+	}
+	
+	//print_r($sqlNum) ;//exit;
+	//print_r($sql2Num) ;//exit;
+	//print_r($sql3Num) ;//exit;
+	//$db->query($sql2);
+	//$list2=$db->fetchRow();
+	
+	$db->query($sqlNum);
+	$listNum=$db->fetchRow();
+	$db->query($sql3Num);
+	$list3Num=$db->fetchRow();
+	$db->query($sql2Num);
+	$list2Num=$db->fetchRow();
+	$list2[num] = $listNum[num];
+	$list2[num3] = $list3Num[num3];
+	$list2[num2] = $list2Num[num2];
+	
+	//echo $sql;
 	$list2[num_t]=$list2[num]-$list2[num3];
 	//echo $sql;
 	//格式化输出数据
@@ -191,6 +231,7 @@ if($do=="list2"){
 	$smt->assign('list',$list);
 	$smt->assign('list2',$list2);
 	$smt->assign('role_action',$role_action_attr);
+	$smt->assign('money_dj_arr',$money_dj_arr);
 	$smt->assign('typeid_cn',select($typeid,"typeid","","类型选择"));
 	$smt->assign('areaid_cn',select($areaid,"areaid","","地区选择"));
 	$smt->assign('levelid_cn',select($levelid,"levelid","","级别选择"));

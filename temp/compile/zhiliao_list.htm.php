@@ -1,5 +1,6 @@
 <form id="pagerForm" method="post" action="index.php?action=zhiliao">
 	<input type="hidden" name="pageNum" value="1" />
+	<input type="hidden" name="state" value="<?php echo $this->_var['state']; ?>" />
     <input type="hidden" name="numPerPage" value="20" />
 </form>
 <style type="text/css">

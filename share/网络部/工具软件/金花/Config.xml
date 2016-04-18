@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="gb2312"?>
+<CollectSet>
+  <ViewSet title="基本设置">
+    <Keyword>腋下脱毛</Keyword>
+    <MustHave>腋下脱毛</MustHave>
+    <TopDoing>50</TopDoing>
+    <WaitTime>1000</WaitTime>
+    <UserType>0</UserType>
+    <IsSaveFile>True</IsSaveFile>
+    <OrderString>百度搜索量</OrderString>
+    <IsDesc>True</IsDesc>
+    <CollectBaidu>True</CollectBaidu>
+    <CollectCnzz>True</CollectCnzz>
+    <CollectSoso>True</CollectSoso>
+    <CollectSogou>True</CollectSogou>
+    <CollectGoogle>True</CollectGoogle>
+    <CollectTaobao>True</CollectTaobao>
+    <CollectTaobaoIndex>False</CollectTaobaoIndex>
+    <CollectAmazon>True</CollectAmazon>
+    <CollectJingdong>True</CollectJingdong>
+    <CollectDangDang>True</CollectDangDang>
+    <CollectPaipai>True</CollectPaipai>
+    <CollectBaiduX>True</CollectBaiduX>
+    <FromKing>False</FromKing>
+    <GoogleAu>False</GoogleAu>
+    <GoogleCa>False</GoogleCa>
+    <GoogleDe>False</GoogleDe>
+    <GoogleFr>False</GoogleFr>
+    <GoogleUs>False</GoogleUs>
+    <UserName>
+    </UserName>
+    <PassWord>
+    </PassWord>
+    <AutoLogin>false</AutoLogin>
+    <RememberPass>True</RememberPass>
+    <ZhuiciYun>False</ZhuiciYun>
+    <BaiduSearchCount>True</BaiduSearchCount>
+    <MustNoHave>
+    </MustNoHave>
+    <ALiBaBa>True</ALiBaBa>
+    <MoveThen>30</MoveThen>
+    <IsFastMode>False</IsFastMode>
+    <FilePath>作者：肖俊 [abc195@qq.com]</FilePath>
+    <HomeUrl>http://www.1n11.com/</HomeUrl>
+    <CollectBaiduIndex>False</CollectBaiduIndex>
+    <RunTime>2012-09-04</RunTime>
+    <IsError>False</IsError>
+  </ViewSet>
+</CollectSet>

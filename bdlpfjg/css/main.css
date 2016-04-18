@@ -1,0 +1,12 @@
+*{ margin:0; padding:0;}
+body{ font-family:"Microsoft YaHei"; font-size:14px; color:#333; background:url(../images/5-120601092208.gif) 0 repeat;}
+a{ text-decoration:none;}
+
+.container{ width:900px; margin:0 auto; background:#FFF; height:100%; overflow:hidden;}
+
+.dbt{ width:900px; float:left; display:inline; text-align:center; line-height:50px; border-bottom:4px solid #000; font-size:26px;}
+
+.xm{ width:900px; float:left; display:inline; margin-top:15px;}
+.bt{ width:900px; float:left; display:inline; text-align:center;}
+ .btwz{ line-height:30px; border-bottom:1px solid #000; font-size:20px; color:#000;}
+.bg{ width:900px; float:left; display:inline; margin-top:15px;}
