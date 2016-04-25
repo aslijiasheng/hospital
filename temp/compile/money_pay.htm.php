@@ -27,46 +27,46 @@
 			<div>
 				<div class="unit">
 					<label>实收金额：</label>
-					<span ><input name="money_ss" type="text" size="10" alt="现收" class="digits" id="money_ss" onChange="getResult()"/></span>  
-					<span><input name="yepay" type="text" size="10" alt="账户支付" class="digits" id="yepay" onChange="getResult()"/></span>
+					<span ><input name="money_ss" type="text" size="10" alt="现收" class="number" id="money_ss" onChange="getResult()"/></span>  
+					<span><input name="yepay" type="text" size="10" alt="账户支付" class="number" id="yepay" onChange="getResult()"/></span>
 				 </div>
 				<div class="divider">divider</div>
 				 <div class="unit">
 					<label>本次欠费：</label>
-					<input name="money_qf"  type="text" size="10" class="digits" onChange="getResult()" id="money_qf"/>
+					<input name="money_qf"  type="text" size="10" class="number" onChange="getResult()" id="money_qf"/>
 				</div>
 				<div class="divider">divider</div>
 				 <div class="unit">
 					<label>本次应收金额：</label>
-					<input name="money_ys" id="money_ys" type="text" size="10" class="digits" readonly="true"/>
+					<input name="money_ys" id="money_ys" type="text" size="10" class="number" readonly="true"/>
 					<span class="inputInfo">供参考用：不能修改</span>
 				</div>
 			</div>
 			<div>
 				<div class="unit">
 					<label>预交定金：</label>
-					<input name="money_dj" type="text" size="15" class="digits" /><span class="inputInfo">数字只能是整数</span>
+					<input name="money_dj" type="text" size="15" class="number" /><span class="inputInfo">数字只能是整数</span>
 				</div>
 				<div class="unit">
 					<label>充值金额：</label>
-					<input name="money_ad" type="text" size="15" class="digits" /><span class="inputInfo">数字只能是整数</span>
+					<input name="money_ad" type="text" size="15" class="number" /><span class="inputInfo">数字只能是整数</span>
 				</div>
 			</div>
 			<div>
 				<div class="unit">
 					<label>还款金额：</label>
-					<input name="money_hk"  type="text" size="10" class="digits"/><span class="inputInfo">数字只能是整数</span> 
+					<input name="money_hk"  type="text" size="10" class="number"/><span class="inputInfo">数字只能是整数</span> 
 				</div>
 				<div class="unit">
 					<label>退款金额：</label>
-					<span><input name="money_tk"  type="text" size="10" alt="退款" class="digits" /></span>
-					<span><input name="money_tk2" type="text" size="10" alt="账号金额退款" class="digits" /></span> 
+					<span><input name="money_tk"  type="text" size="10" alt="退款" class="number" /></span>
+					<span><input name="money_tk2" type="text" size="10" alt="账号金额退款" class="number" /></span> 
 				</div>
 			</div>
 			<div>
 				<div class="unit">
 					<label>消费积分：</label>
-					<input name="integ"  type="text" size="10" class="digits"/> 
+					<input name="integ"  type="text" size="10" class="number"/> 
 				</div>
 			</div>
 			<div>

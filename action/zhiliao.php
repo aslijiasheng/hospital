@@ -52,7 +52,7 @@ if($do==""){
 	}
 
 	//查询
-	$sql="SELECT i.name,i.tel,i.xb,s.id,s.sellid,s.salesid,s.infoid,s.zxxm,s.productid,s.doctorid,s.intro,s.created_at,s.zhiliao_at,s.state  FROM `cs_zhiliao` as s,`cs_info` as i where s.infoid = i.id $search order by s.id desc LIMIT $pageNum,$numPerPage";
+	$sql="SELECT i.name,i.tel,i.xb,s.id,s.sellid,s.salesid,i.salesid as salesidinfo,s.infoid,s.zxxm,s.productid,s.doctorid,s.intro,s.created_at,s.zhiliao_at,s.state  FROM `cs_zhiliao` as s,`cs_info` as i where s.infoid = i.id $search order by s.id desc LIMIT $pageNum,$numPerPage";
 	$db->query($sql);
 	$list=$db->fetchAll();
 	 //合计
@@ -71,6 +71,7 @@ if($do==""){
 	    $replacement = "\$1&#9742;\$3";
 		$list[$key][dh_txt] = preg_replace($pattern, $replacement, $list[$key][tel]);
 		$list[$key][salesid_txt] = $user_list[$list[$key][salesid]];
+		$list[$key][salesidinfo_txt] = $user_list[$list[$key][salesidinfo]];
 		//状态
 		$state2=array('1'=>'已成交','2'=>'未成交');
 		$list[$key][state_txt] = strtr($list[$key][state],$state2);
@@ -108,11 +109,13 @@ if($do==""){
 	$smt->assign('areaid_cn',select($areaid,"areaid","","地区选择"));
 	$smt->assign('paidan_cn',select($paidanids,"paidanid","","派单人"));
 	$smt->assign('levelid_cn',select($levelid,"levelid","","级别选择"));
-	$smt->assign('salesid_cn',select($salesid,"salesid","","派单人"));
+	$smt->assign('salesid_cn',select($salesid,"salesid","","登记人"));
 	//$smt->assign('zlxm_cn',select($pdid,"pdid",$row[sellid],"派单人2"));
 	$smt->assign('numPerPage',$_POST[numPerPage]); //显示条数
 	$smt->assign('pageNum',$_POST[pageNum]); //当前页数
 	$smt->assign('state',$_POST[state]); //当前页数
+	$smt->assign('salesid',$_POST[salesid]); //登记人
+	$smt->assign('paidanid',$_POST['paidanid']); //登记人
 	$smt->assign('total',$total);
 	$smt->assign('title',"治疗列表");
 	$smt->display('zhiliao/zhiliao_list.htm');

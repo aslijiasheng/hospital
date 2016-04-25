@@ -1,3 +1,82 @@
+<style>
+    .invoice-box{
+        max-width:800px;
+        margin:auto;
+        padding:30px;
+        border:1px solid #eee;
+        box-shadow:0 0 10px rgba(0, 0, 0, .15);
+        font-size:16px;
+        line-height:24px;
+        font-family:'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+        color:#555;
+    }
+    
+    .invoice-box table{
+        width:100%;
+        line-height:inherit;
+        text-align:left;
+    }
+    
+    .invoice-box table td{
+        padding:5px;
+        vertical-align:top;
+    }
+    
+    .invoice-box table tr td:nth-child(2){
+        text-align:left;
+    }
+    
+    .invoice-box table tr.top table td{
+        padding-bottom:20px;
+    }
+    
+    .invoice-box table tr.top table td.title{
+        font-size:45px;
+        line-height:45px;
+        color:#333;
+    }
+    
+    .invoice-box table tr.information table td{
+        padding-bottom:40px;
+    }
+    
+    .invoice-box table tr.heading td{
+        background:#eee;
+        border-bottom:1px solid #ddd;
+        font-weight:bold;
+    }
+    
+    .invoice-box table tr.details td{
+        padding-bottom:20px;
+    }
+    
+    .invoice-box table tr.item td{
+        border-bottom:1px solid #eee;
+    }
+    
+    .invoice-box table tr.item.last td{
+        border-bottom:none;
+    }
+    
+    .invoice-box table tr.total td:nth-child(2){
+        border-top:2px solid #eee;
+        font-weight:bold;
+    }
+    
+    @media only screen and (max-width: 600px) {
+        .invoice-box table tr.top table td{
+            width:100%;
+            display:block;
+            text-align:center;
+        }
+        
+        .invoice-box table tr.information table td{
+            width:100%;
+            display:block;
+            text-align:center;
+        }
+    }
+    </style>
 <form id="pagerForm" method="post" action="?action=money&do=list2">
 	<input type="hidden" name="pageNum" value="1" />
 	<input type="hidden" name="typeid"  value="<?php echo $this->_var['typeid'];?>"/>
@@ -74,6 +153,7 @@
 					<th align="center">账户消费</th>
 					<th align="center">退款</th>
 					<th align="center">短信</th>
+					<th align="center">打印</th>
 				</tr>
 			</thead>
 			<tbody>			
@@ -97,7 +177,8 @@ $_from = $this->_var['list']; if (!is_array($_from) && !is_object($_from)) { set
 					<td ><?php echo  ($this->_var['row']['money_dj'] == 0) ? $this->_var['row']['yepay'] : 0; ?></td>
 					<td ><?php echo  ($this->_var['row']['money_dj'] == 0) ? $this->_var['row']['money_tk'] : 0; ?></td>
 					<td><a href="?action=smsmail&do=sms&id=<?php echo $this->_var['row']['infoid']; ?>" target="navTab" >短信</a></td>
-				</tr>
+					<td><a class="show" href="javascript:$.printBox('<?php echo $this->_var['row']['id']; ?>')"><span>打印</span></a></td>
+                </tr>
 				
 			<?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
 			</tbody>
@@ -112,3 +193,50 @@ $_from = $this->_var['list']; if (!is_array($_from) && !is_object($_from)) { set
 		</div>
 	</div>
 </div>
+
+<?php 
+        $_from = $this->_var['list']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'row');if (count($_from)):
+        foreach ($_from AS $this->_var['row']):
+?>
+                    <div class="invoice-box" style="display:none" id='<?php echo $this->_var['row']['id']; ?>'>
+<table cellpadding="0" cellspacing="0">
+            <tr class="top">
+                <td colspan="4" style="text-align:center">
+                                昆山百达丽医疗美容门诊部付款<br><br>
+                                专用收据<br><br>
+                </td>
+            </tr>
+            
+            
+            
+            <tr class="heading">
+                <td>
+                开票日期: <?php echo date('Y-m-d');?>
+                </td>
+                
+                <td>
+                    姓名: <?php echo $this->_var['row']['name']; ?>
+                </td>
+                
+                <td>
+                    性别: <?php echo $this->_var['row']['xb']; ?>
+                </td>
+                
+                <td>
+                    年龄: <?php echo $this->_var['row']['nl']; ?>
+                </td>
+                
+            </tr>
+            
+            
+            <tr class="item">
+                <td colspan="4">
+                <textarea cols="130%" rows="20%"></textarea>
+                </td>
+            </tr>
+            
+          
+        </table>
+                    </div>
+
+            <?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>

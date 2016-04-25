@@ -1,9 +1,0 @@
-DirectoryIndex index.html index.htm index.php
-<Files ~ "^.(htaccess|htpasswd)$"> 
-deny from all 
-</Files> 
-RewriteEngine on 
-RewriteCond %{HTTP_HOST} ^(bdlzxyy\.com)(:80)? [NC] 
-RewriteRule ^(.*) http://www.bdlzxyy.com/$1 [R=301,L]  
-order deny,allow  
-

@@ -140,7 +140,7 @@ if($do=="list2"){
 	
 	//$sql="SELECT i.name,i.tel,i.zxxm,i.salesid,i.typeid,c.salesid as paidan_person,i.levelid,s.id,s.salesid2,s.infoid,s.productid,s.doctorid,s.intro,s.created_at,s.fz,s.money_qf,s.money_ss,s.yepay,s.money_tk FROM `cs_sell` as s,`cs_info` as i, `cs_zhiliao` as c where s.infoid = i.id and c.sellid = s.id $search and (s.money_ss>0||s.yepay>0||s.money_qf>0||s.money_tk>0) order by s.id desc LIMIT $pageNum,$numPerPage";
     //,m.created_at as create_at_dj,m.money_dj, 
-	$sql="SELECT i.name,i.tel,i.zxxm,i.salesid,i.typeid,c.salesid as paidan_person,i.levelid,s.id,s.salesid2,s.infoid,s.productid,m.created_at as create_at_dj,m.money_dj,s.doctorid,s.intro,s.created_at,s.fz,s.money_qf,s.money_ss,s.yepay,s.money_tk from  `cs_sell` AS s inner join `cs_info` AS i on s.infoid = i.id inner join `cs_money` AS m on m.sellid = s.id left join `cs_zhiliao` AS c on c.sellid = s.id where 1=1 $search and (s.money_ss>0||s.yepay>0||s.money_qf>0||s.money_tk>0) order by s.id desc LIMIT $pageNum,$numPerPage";
+	$sql="SELECT i.name,i.xb,i.nl,i.tel,i.zxxm,i.salesid,i.typeid,c.salesid as paidan_person,i.levelid,s.id,s.salesid2,s.infoid,s.productid,m.created_at as create_at_dj,m.money_dj,s.doctorid,s.intro,s.created_at,s.fz,s.money_qf,s.money_ss,s.yepay,s.money_tk from  `cs_sell` AS s inner join `cs_info` AS i on s.infoid = i.id inner join `cs_money` AS m on m.sellid = s.id left join `cs_zhiliao` AS c on c.sellid = s.id where 1=1 $search and (s.money_ss>0||s.yepay>0||s.money_qf>0||s.money_tk>0) group by s.id order by s.id desc LIMIT $pageNum,$numPerPage";
 	$db->query($sql);
 	$list=$db->fetchAll();
 
@@ -321,8 +321,8 @@ if($do=="zuofeixr"){
 	//验证密码
 	$pw=md5($_POST[pw]);
 	$pw2=$config['financepass'];//读取系统配置
-	if($pw!=$pw2){echo "{\"statusCode\":\"300\",\"message\":\"密码错误!\",\"navTabId\":\"\",\"callbackType\":\"forward\",\"forwardUrl\":\"?action=money\"}";}
-	elseif($row[zuofei]==1){echo "{\"statusCode\":\"300\",\"message\":\"单子已作废了!\",\"navTabId\":\"\",\"callbackType\":\"forward\",\"forwardUrl\":\"?action=money\"}";}
+	// if($pw!=$pw2){echo "{\"statusCode\":\"300\",\"message\":\"密码错误!\",\"navTabId\":\"\",\"callbackType\":\"forward\",\"forwardUrl\":\"?action=money\"}";}
+	if($row[zuofei]==1){echo "{\"statusCode\":\"300\",\"message\":\"单子已作废了!\",\"navTabId\":\"\",\"callbackType\":\"forward\",\"forwardUrl\":\"?action=money\"}";}
 		else{
 		$sql2="UPDATE cs_sell inner join cs_info ON cs_sell.infoid = cs_info.id SET 
 		`cs_sell`.`money_ss` =cs_sell.money_ss-'$row[money_ss]'-'$row[money_ad]'-'$row[money_dj]'-'$row[money_hk]',

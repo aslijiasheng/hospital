@@ -1,6 +1,8 @@
 <form id="pagerForm" method="post" action="index.php?action=zhiliao">
 	<input type="hidden" name="pageNum" value="1" />
 	<input type="hidden" name="state" value="<?php echo $this->_var['state']; ?>" />
+	<input type="hidden" name="salesid" value="<?php echo $this->_var['salesid']; ?>" />
+	<input type="hidden" name="paidanid" value="<?php echo $this->_var['paidanid']; ?>" />
     <input type="hidden" name="numPerPage" value="20" />
 </form>
 <style type="text/css">
@@ -30,6 +32,9 @@ table.list td a.an{background:#555;display:inline;padding:2px 4px;color:#fff;cur
 					</td>					
 					<td>
 					<?php echo $this->_var['paidan_cn']; ?>
+					</td>
+					<td>
+					<?php echo $this->_var['salesid_cn']; ?>
 					</td>
 					 <td>
 					<input type="radio" name="state"  value="2" />未成交
@@ -67,6 +72,7 @@ table.list td a.an{background:#555;display:inline;padding:2px 4px;color:#fff;cur
 					<th align="center">性别</th>
 					<th align="center">预约治疗</th>
 					<th align="center">派单人</th>
+					<th align="center">登记人</th>
 					<th align="center">客户电话</th>
 					<th align="center">治疗项目</th>
 					<th align="center">治疗科室</th>
@@ -87,6 +93,7 @@ table.list td a.an{background:#555;display:inline;padding:2px 4px;color:#fff;cur
 					<td><?php echo $this->_var['row_0_90441900_1396488630']['xb']; ?></td>
 					<td style="color:#f00;"><?php echo $this->_var['row_0_90441900_1396488630']['zhiliao_at']; ?></td>
 					<td><?php echo $this->_var['row_0_90441900_1396488630']['salesid_txt']; ?></td>
+					<td><?php echo $this->_var['row_0_90441900_1396488630']['salesidinfo_txt']; ?></td>
 					<td><?php echo $this->_var['row_0_90441900_1396488630']['dh_txt']; ?></td>
 					<td><select class="sxm" > <?php echo $this->_var['row_0_90441900_1396488630']['zxxm_txt']; ?><?php echo $this->_var['row_0_90441900_1396488630']['pd_txt']; ?></select><a class="an" href="?action=zhiliao&do=xmadd&id=<?php echo $this->_var['row_0_90441900_1396488630']['sellid']; ?>" target="dialog" rel="xmadd" <?php echo $this->_var['row_0_90441900_1396488630']['xs']; ?>>添加治疗项目</a></td>
 					<td> <?php echo $this->_var['row_0_90441900_1396488630']['productid_txt']; ?></td>
