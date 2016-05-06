@@ -458,6 +458,9 @@ if($do=="del"){
 	$row=$db->fetchRow();
 	//执行要删除的	
 	$sql="delete from `cs_sell` where `cs_sell`.`id`=$id limit 1";
+	//写入客户日志
+	$lognr="用户[".$_SESSION[username]."]删除了挂号信息[$id]";
+	infolog($row['infoid'],$lognr,1);
 	if($db->query($sql)){
 		$sql="UPDATE `cs_info` SET `visitnum` = visitnum-1 WHERE `cs_info`.`id`=$row[infoid] LIMIT 1 ;";
 		$db->query($sql);

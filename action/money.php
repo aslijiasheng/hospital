@@ -3,6 +3,7 @@ header("Content-type: text/html; charset=utf-8");
 if(!defined('CORE'))exit("error!"); 
 
 include(CORE."include/cfg.php");		  //配置类
+include(CORE."include/cfgqt.php");		  //配置类2
 
 //列表	
 if($do==""){
@@ -95,7 +96,7 @@ if($do=="list2"){
 	if($_POST['name']){$search .= " and name like '%$_POST[name]%'";}
 	if($_POST['tel']){$search .= " and tel like '%$_POST[tel]%'";}
 	if($_POST['fz']){$search .= " and fz='$_POST[fz]'";}
-	if($_POST['money_qf']){$search .= " and money_qf >'$_POST[money_qf]'";}
+	if($_POST['money_qf']){$search .= " and s.money_qf >'$_POST[money_qf]'";}
 	if($_POST['typeid']){$search .= " && typeid = '$_POST[typeid]'";}
 	if($_POST['salesid']){$search .= " and i.salesid = '$_POST[salesid]'";}
 	if($_POST['paidanid']){$search .= " and c.salesid = '$_POST[paidanid]'";}
@@ -140,7 +141,7 @@ if($do=="list2"){
 	
 	//$sql="SELECT i.name,i.tel,i.zxxm,i.salesid,i.typeid,c.salesid as paidan_person,i.levelid,s.id,s.salesid2,s.infoid,s.productid,s.doctorid,s.intro,s.created_at,s.fz,s.money_qf,s.money_ss,s.yepay,s.money_tk FROM `cs_sell` as s,`cs_info` as i, `cs_zhiliao` as c where s.infoid = i.id and c.sellid = s.id $search and (s.money_ss>0||s.yepay>0||s.money_qf>0||s.money_tk>0) order by s.id desc LIMIT $pageNum,$numPerPage";
     //,m.created_at as create_at_dj,m.money_dj, 
-	$sql="SELECT i.name,i.xb,i.nl,i.tel,i.zxxm,i.salesid,i.typeid,c.salesid as paidan_person,i.levelid,s.id,s.salesid2,s.infoid,s.productid,m.created_at as create_at_dj,m.money_dj,s.doctorid,s.intro,s.created_at,s.fz,s.money_qf,s.money_ss,s.yepay,s.money_tk from  `cs_sell` AS s inner join `cs_info` AS i on s.infoid = i.id inner join `cs_money` AS m on m.sellid = s.id left join `cs_zhiliao` AS c on c.sellid = s.id where 1=1 $search and (s.money_ss>0||s.yepay>0||s.money_qf>0||s.money_tk>0) group by s.id order by s.id desc LIMIT $pageNum,$numPerPage";
+	$sql="SELECT i.name,i.xb,i.nl,i.tel,i.zxxm,i.salesid,i.typeid,c.salesid as paidan_person,i.levelid,s.id,s.salesid2,s.infoid,s.productid,m.created_at as create_at_dj,m.money_dj,s.doctorid,s.intro,s.created_at,s.fz,s.money_qf,s.money_ss,s.yepay,s.money_tk from  `cs_sell` AS s inner join `cs_info` AS i on s.infoid = i.id inner join `cs_money` AS m on m.sellid = s.id and m.zuofei = 0 left join `cs_zhiliao` AS c on c.sellid = s.id where 1=1 $search and (s.money_ss>0||s.yepay>0||s.money_qf>0||s.money_tk>0) group by s.id order by s.id desc LIMIT $pageNum,$numPerPage";
 	$db->query($sql);
 	$list=$db->fetchAll();
 
@@ -389,5 +390,56 @@ echo '<ul class="lb">';
 while($row=$db->fetchRow()){$row[salesid_txt] = $user_list[$row[salesid3]];echo '<li >'.$row[created_at].'--<b>姓名: </b>'.$row[name].'--<b>普通消费: </b>'.$row[money_ss].'--<b>余额消费: </b>'.$row[yepay].'--<b>定金: </b>'.$row[money_dj].'--<b>充值: </b>'.$row[money_ad].'--<b>还款: </b>'.$row[money_hk].'--<b>退款: </b>'.$row[money_tk].'--<b>账户款: </b>'.$row[money_tk2].'--<b>收款人: </b>'.$row[salesid_txt].'--<b>收款详细: </b>'.$row[intro].'</li>';}}
 echo '</ul>';
 }
+
+//打印模板
+if($do=="print"){
+
+    $id = $_GET['id'];
+    $sellid = $_GET['sellid'];
+	//查询
+	$sql="SELECT i.name,i.tel,i.xb,s.id,i.nl,s.salesid,s.productid,s.doctorid,s.infoid,s.intro,s.zxxm,s.created_at,s.zhiliao_at FROM `cs_zhiliao` as s,`cs_info` as i where s.infoid = i.id and s.infoid='$id'  LIMIT 1";
+	$db->query($sql);
+	$row=$db->fetchRow();
+    $sellsql = "select  s.item, m.money_ss  from cs_sell as s inner join cs_money as m on s.id = m.sellid where s.id = {$sellid}";
+	$db->query($sellsql);
+	$sellinforow=$db->fetchAll();
+    //模版
+    $smt = new smarty();smarty_cfg($smt);
+    $smt->assign('row',$row);
+    $smt->assign('id',$id);
+    $smt->assign('sellid',$sellid);
+    $smt->assign('sellinforow',$sellinforow);
+    $smt->assign('title',"收费编辑");
+    $smt->assign('sex_cn',radio($infosex,"xb",$row[xb]));
+    $smt->display('money/money_edit.htm');
+    exit;
+}
+
+if($do=="printpriew"){
+    $priewdata = array("name" => "", "yy_at" => "", "xb" => "", "nl" => "", "item" => array());
+    $id = $_POST['id'];
+    $sellid = $_POST['sellid'];
+    $priewdata['name'] = $_POST['name'];
+    $priewdata['yy_at'] = $_POST['yy_at'];
+    $priewdata['xb'] = $_POST['xb'];
+    $priewdata['nl'] = $_POST['nl'];
+    $zlxm_title = $_POST['zlxm_title'];
+    $zl_danjia = $_POST['zl_danjia'];
+    $zl_num = $_POST['zl_num'];
+    $zl_zhekoue = $_POST['zl_zhekoue'];
+    $zl_beizhu = $_POST['zl_beizhu'];
+    foreach($zlxm_title as $key => $value){
+        $priewdata['item'][$key]['title']   = $value;
+        $priewdata['item'][$key]['danjia']  = $zl_danjia[$key];
+        $priewdata['item'][$key]['num']     = $zl_num[$key];
+        $priewdata['item'][$key]['zhekoue'] = $zl_zhekoue[$key];
+        $priewdata['item'][$key]['jine']    = round($zl_danjia[$key] * $zl_num[$key] * $zl_zhekoue[$key], 2);
+        $priewdata['item'][$key]['beizhu']  = $zl_beizhu[$key];
+    }
+    $_SESSION['prewdata'] = $priewdata;
+    echo "{\"statusCode\":\"200\",\"message\":\"操作成功!\",\"navTabId\":\"\",\"callbackType\":\"forward\",	\"forwardUrl\":\"?action=money&do=print&id=$id&sellid=$sellid\"}";
+	exit;
+}
+
 
 ?>
